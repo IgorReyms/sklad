@@ -46,9 +46,6 @@ def create_excel(path) -> bool:
         xlsx_data = Workbook()
         ws = xlsx_data.active
         ws.title = config.config['ExcelSheetData']['sheetname']
-
-
-
         if configure_excelfile(ws, config.config['ExcelSheetData']['data']):
             if path.replace(' ','') == '':
                 xlsx_data.save(path + config.config["ExcelFilename"] + '.xlsx')
@@ -63,5 +60,6 @@ def configure_excelfile(sheet, sheet_config) -> bool:
         sheet[key].border = Border(bottom=Side(border_style="medium", color="000000"), right=Side(border_style="medium", color="000000"))
         sheet.column_dimensions[key[0]].width = 30
     return True
-create_excel('')
+
+# create_excel('')
 
