@@ -60,7 +60,7 @@ def configure_excelfile(sheet, sheet_config) -> bool:
         sheet[key] = sheet_config[key]
         sheet[key].font = Font(size=12, bold=True)
         sheet[key].alignment = Alignment(horizontal = 'center')
-        sheet[key].border = Border(bottom=Side(border_style="medium", color="ff0000"))
+        sheet[key].border = Border(bottom=Side(border_style="medium", color="000000"), right=Side(border_style="medium", color="000000"))
         sheet.column_dimensions[key[0]].width = 30
     return True
 create_excel('')
