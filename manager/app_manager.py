@@ -61,6 +61,11 @@ class MainForm(QtWidgets.QMainWindow):
 
         #создать отправлениe
         self.ui.CreateShipmentBtn.clicked.connect(self.create_repair_shipment)
+        # выдать отремонтированные изделия
+        self.ui.RepairOutClientBtn.clicked.connect(self.repair_to_client)
+
+        #Поиск информации по ремонту
+        self.ui.FinderRepairInfoBtn.clicked.connect(self.repair_finder_information)
     def installation_app(self) -> bool:
         userResponse = QtWidgets.QMessageBox.question(self, 'Предупреждение', 'Вы уверены?')
         if userResponse == QtWidgets.QMessageBox.StandardButton.Yes:
@@ -204,19 +209,66 @@ class MainForm(QtWidgets.QMainWindow):
         except Exception as e:
             QtWidgets.QMessageBox.critical(self, 'Ошибка',
                                            f'При учете нового ремонта произошла ошибка. Причина: {e.__str__()}')
-        update_repair_page(self, 'create_repair')
+
+        if len(repairs) != 0:
+            update_repair_page(self, 'create_repair')
+        else:
+            QtWidgets.QMessageBox.warning(self, 'Информация',
+                                             f"Отсутствуют строки ремонта! Ремонт не создан!")
 
     def create_repair_shipment(self) -> None:
 
         try:
-            manage_data(None, 2)
+            manage_data(self.ui.ShipmentNoTextEdit.toPlainText(), 2)
             QtWidgets.QMessageBox.information(self, 'Информация',
                                               f"Ремонты отправлены! Изменено строк:{self.ui.RepairQtyUnShipInfoTextEdit.toPlainText()}")
-            update_repair_page(self, 'repair_status_info')
+            if self.ui.RepairQtyUnShipInfoTextEdit.toPlainText() != '0':
+                update_repair_page(self, 'create_shipment')
+            else:
+                QtWidgets.QMessageBox.warning(self, 'Информация',
+                                              f"Отсутствуют не отправленные Ремонты! Отправление не создано!")
         except Exception as e:
             QtWidgets.QMessageBox.critical(self, 'Ошибка',
                                            f'При создании отправления произошла ошибка!. Причина: {e.__str__()}')
 
+    def repair_to_client(self) -> None:
+        try:
+            manage_data(self.ui.RepairNoOutTextEdit.toPlainText(), 3)
+            QtWidgets.QMessageBox.information(self, 'Информация',
+                                              f"Ремонт {self.ui.RepairNoOutTextEdit.toPlainText()} выдан клиенту!")
+
+            update_repair_page(self, 'repair_status_info')
+        except Exception as e:
+            QtWidgets.QMessageBox.critical(self, 'Ошибка',
+                                           f'При выдаче ремонта произошла ошибка!. Причина: {e.__str__()}')
+
+    def repair_finder_information(self):
+        try:
+            repair_info = manage_data(self.ui.FinderRepairNoTextEdit.toPlainText(), 4)
+            QtWidgets.QMessageBox.information(self, 'Информация',
+                                              f"Ремонт {self.ui.FinderRepairNoTextEdit.toPlainText()} найден!")
+
+            self.ui.FinderRepairClientTextEdit.setPlainText(repair_info['Клиент'])
+            self.ui.FinderRepairStatusTextEdit.setPlainText(repair_info['Статус'])
+            self.ui.FinderRepairShipNoTextEdit.setPlainText(repair_info['№ Отправления'])
+            self.ui.FinderRepairShipmentDateTextEdit.setPlainText(str(repair_info['Дата отправления']))
+            self.ui.FinderRepairOutTextEdit.setPlainText(str(repair_info['Дата выдачи']))
+
+
+            string = ''
+            name_len = len(repair_info['Сданные изделия']['Название'][0])
+            for i in range(len(repair_info['Сданные изделия']['Название'])):
+                string += repair_info['Сданные изделия']['Название'][i] + '-->' + str(repair_info['Сданные изделия']['Количество'][i]).ljust(5) + '\n'
+                if name_len < len(repair_info['Сданные изделия']['Название'][i]):
+                    name_len = len(repair_info['Сданные изделия']['Название'][i])
+            print(name_len)
+            string_head = 'Изделие'  + ' ' * (name_len-7)+ 'Количество\n'.ljust(5) + string
+            self.ui.FinderRepairItemInfoTextEdit.setPlainText(string_head)
+
+
+        except Exception as e:
+            QtWidgets.QMessageBox.critical(self, 'Ошибка',
+                                           f'Информация по ремонту не собрана. Причина: {e.__str__()}')
 def on_start() -> None:
     app = QtWidgets.QApplication(sys.argv)
     window = MainForm()

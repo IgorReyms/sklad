@@ -43,7 +43,7 @@ def update_repair_page(window, flag):
         window.ui.RepairQtyUnShipInfoTextEdit.setPlainText(str(count_list[0]))
         window.ui.RepairQtyShipInfoTextEdit.setPlainText(str(count_list[1]))
         window.ui.RepairQtyInfoTextEdit.setPlainText(str(count_list[2]))
-
+        window.ui.ShipmentNoTextEdit.setPlainText(config.config["RepairInfo"]["LastShipmentNo"])
 def create_new_repair_shipment_no(last_no) -> str:
     last_no = last_no.split("-")
     new_no = last_no[0] + '-' + str(int(last_no[1]) + 1)
