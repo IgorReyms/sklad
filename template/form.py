@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiformsekTNj.ui'
+## Form generated from reading UI file 'uiformNYKfwY.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.6.1
 ##
@@ -303,12 +303,18 @@ class Ui_MainWindow(object):
         self.RepairQtyInfoTextEdit = QTextEdit(self.repairPage)
         self.RepairQtyInfoTextEdit.setObjectName(u"RepairQtyInfoTextEdit")
         self.RepairQtyInfoTextEdit.setGeometry(QRect(860, 120, 104, 31))
-        self.RepairFindItemTextEdit = QPlainTextEdit(self.repairPage)
-        self.RepairFindItemTextEdit.setObjectName(u"RepairFindItemTextEdit")
-        self.RepairFindItemTextEdit.setGeometry(QRect(470, 180, 311, 31))
         self.label_21 = QLabel(self.repairPage)
         self.label_21.setObjectName(u"label_21")
         self.label_21.setGeometry(QRect(370, 190, 91, 20))
+        self.RepairFindItem = QTableWidget(self.repairPage)
+        self.RepairFindItem.setObjectName(u"RepairFindItem")
+        self.RepairFindItem.setGeometry(QRect(470, 180, 471, 31))
+        self.RepairFindItem.setShowGrid(False)
+        self.RepairFindItem.setCornerButtonEnabled(False)
+        self.RepairFindItem.setColumnCount(0)
+        self.RepairFindItem.horizontalHeader().setVisible(False)
+        self.RepairFindItem.horizontalHeader().setHighlightSections(True)
+        self.RepairFindItem.horizontalHeader().setStretchLastSection(True)
         self.stackedWidget.addWidget(self.repairPage)
         self.debtPage = QWidget()
         self.debtPage.setObjectName(u"debtPage")
@@ -424,7 +430,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)

@@ -6,7 +6,9 @@ from template.form import Ui_MainWindow
 from PySide6 import QtCore, QtGui, QtWidgets
 from installation.install import install_process
 from models.exceptions import CustomException
-
+from models.custom_widgets import ExtendedComboBox
+from src.create_repair import manage_data
+from updater import update_repair_page
 class MainForm(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
@@ -42,10 +44,23 @@ class MainForm(QtWidgets.QMainWindow):
 
         # логика кнопок страницы Ремонтов
         self.ui.RepairNoInTextEdit.setPlainText(config.config["RepairInfo"]["LastRepairNo"])
-        self.ui.RepairDataTextEdit.setPlainText(self.get_data())
-        self.ui.TableRepairDocField.
+        self.ui.RepairDataTextEdit.setPlainText(self.get_date())
+        # логика таблицы страницы Ремонтов
+        self.ui.TableRepairDocField.verticalHeader().setVisible(False)
+        self.ui.TableRepairDocField.setContextMenuPolicy(QtGui.Qt.ContextMenuPolicy.CustomContextMenu)
+        self.ui.TableRepairDocField.customContextMenuRequested.connect(self.repairTableContextMenu)
+        update_repair_page(self, 'repair_status_info')
+        # логика поиска изделия
+        self.ui.RepairFindItem.insertRow(0)
+        self.ui.RepairFindItem.insertColumn(0)
+        self.ui.RepairFindItem.verticalHeader().setVisible(False)
+        self.ui.RepairFindItem.setCellWidget(0, 0, ExtendedComboBox(self))
 
+        #создать ремонт
+        self.ui.CreateRepairBtn.clicked.connect(self.create_repair)
 
+        #создать отправлениe
+        self.ui.CreateShipmentBtn.clicked.connect(self.create_repair_shipment)
     def installation_app(self) -> bool:
         userResponse = QtWidgets.QMessageBox.question(self, 'Предупреждение', 'Вы уверены?')
         if userResponse == QtWidgets.QMessageBox.StandardButton.Yes:
@@ -119,10 +134,88 @@ class MainForm(QtWidgets.QMainWindow):
             QtWidgets.QMessageBox.critical(self, 'Ошибка',
                                            f'Из-за нарушения целостности невозможно изменить файл!')
 
-    def get_data(self):
+    def get_date(self):
         return datetime.datetime.today().strftime('%d-%m-%Y')
 
+    def repairTableContextMenu(self, pos):
+        context_menu = QtWidgets.QMenu(self.ui.TableRepairDocField)
+        add_action = QtGui.QAction("Вставить строку", self.ui.TableRepairDocField)
+        del_action = QtGui.QAction("Удалить строку", self.ui.TableRepairDocField)
 
+        add_action.triggered.connect(self.repairTableInsertRow)
+        del_action.triggered.connect(self.repairTableDeleteRow)
+        context_menu.addActions([add_action, del_action])
+        context_menu.exec(self.ui.TableRepairDocField.viewport().mapToGlobal(pos))
+
+    def repairTableInsertRow(self):
+        try:
+            combo_box = ExtendedComboBox()
+        except CustomException as e:
+            QtWidgets.QMessageBox.critical(self, 'Ошибка',
+                                           f'При чтении файла товаров stocks произошла ошибка. Причина: {e.__str__()}')
+        row_count = self.ui.TableRepairDocField.rowCount()
+        self.ui.TableRepairDocField.insertRow(row_count)
+        self.ui.TableRepairDocField.setCellWidget(row_count, 0, combo_box)
+
+
+
+    def repairTableDeleteRow(self):
+        selected_rows = self.ui.TableRepairDocField.selectedIndexes()
+        for index in selected_rows:
+            self.ui.TableRepairDocField.removeRow(index.row())
+
+    def create_repair(self) -> None:
+        rows_count = self.ui.TableRepairDocField.rowCount()
+        cols_count = self.ui.TableRepairDocField.columnCount()
+        static_repair_data = {
+                '№ Заказа': [self.ui.RepairNoInTextEdit.toPlainText()],
+                'Статус': ['Не отправлено'],
+                '№ Отправления': [''],
+                'Клиент': [self.ui.RepairClientTextEdit.toPlainText()],
+                'От клиента': [self.ui.RepairDataTextEdit.toPlainText()],
+                'Дата отправления': [''],
+                'Клиенту':[''],
+                'Изделие':[''],
+                'Количество изделий': [0],
+                'Комментарий':['']
+            }
+        repairs = list()
+        data = static_repair_data
+        for row in range(rows_count):
+
+            for col in range(cols_count):
+                if col == 0:
+                    item = self.ui.TableRepairDocField.cellWidget(row, col).get_data()
+                else:
+                    item = self.ui.TableRepairDocField.item(row, col)
+                if item is not None:
+                    if col == 0:
+                        data['Изделие'] = [str(item)]
+                    elif col == 1:
+                        data['Количество изделий'] = [int(item.text())]
+                    elif col == 2:
+                        data['Комментарий'] = [item.text()]
+            repairs.append(data.copy())
+            data = static_repair_data.copy()
+
+        try:
+            manage_data(repairs, 1)
+            QtWidgets.QMessageBox.information(self, 'Информация', f"Ремонт {self.ui.RepairNoInTextEdit.toPlainText()} учтен! Создано строк:{len(repairs)}")
+        except Exception as e:
+            QtWidgets.QMessageBox.critical(self, 'Ошибка',
+                                           f'При учете нового ремонта произошла ошибка. Причина: {e.__str__()}')
+        update_repair_page(self, 'create_repair')
+
+    def create_repair_shipment(self) -> None:
+
+        try:
+            manage_data(None, 2)
+            QtWidgets.QMessageBox.information(self, 'Информация',
+                                              f"Ремонты отправлены! Изменено строк:{self.ui.RepairQtyUnShipInfoTextEdit.toPlainText()}")
+            update_repair_page(self, 'repair_status_info')
+        except Exception as e:
+            QtWidgets.QMessageBox.critical(self, 'Ошибка',
+                                           f'При создании отправления произошла ошибка!. Причина: {e.__str__()}')
 
 def on_start() -> None:
     app = QtWidgets.QApplication(sys.argv)

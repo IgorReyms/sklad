@@ -180,7 +180,7 @@ QPushButton:pressed {
        <item>
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="currentIndex">
-          <number>1</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="installationPage">
           <widget class="QLabel" name="label">
@@ -786,16 +786,6 @@ QPushButton:pressed {
             </rect>
            </property>
           </widget>
-          <widget class="QPlainTextEdit" name="RepairFindItemTextEdit">
-           <property name="geometry">
-            <rect>
-             <x>470</x>
-             <y>180</y>
-             <width>311</width>
-             <height>31</height>
-            </rect>
-           </property>
-          </widget>
           <widget class="QLabel" name="label_21">
            <property name="geometry">
             <rect>
@@ -808,6 +798,34 @@ QPushButton:pressed {
            <property name="text">
             <string>Поиск изделия</string>
            </property>
+          </widget>
+          <widget class="QTableWidget" name="RepairFindItem">
+           <property name="geometry">
+            <rect>
+             <x>470</x>
+             <y>180</y>
+             <width>471</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="showGrid">
+            <bool>false</bool>
+           </property>
+           <property name="cornerButtonEnabled">
+            <bool>false</bool>
+           </property>
+           <property name="columnCount">
+            <number>0</number>
+           </property>
+           <attribute name="horizontalHeaderVisible">
+            <bool>false</bool>
+           </attribute>
+           <attribute name="horizontalHeaderHighlightSections">
+            <bool>true</bool>
+           </attribute>
+           <attribute name="horizontalHeaderStretchLastSection">
+            <bool>true</bool>
+           </attribute>
           </widget>
          </widget>
          <widget class="QWidget" name="debtPage">
