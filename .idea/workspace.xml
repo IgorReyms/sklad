@@ -4,50 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce1aed9f-3be6-4ff8-ab77-58e388c46130" name="Changes" comment="0">
-      <change afterPath="$PROJECT_DIR$/1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GothamPro-Bold.cw127.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GothamPro-Bold.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GothamPro-Bold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GothamPro.cw127.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GothamPro.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GothamPro.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/main/Analysis-00.toc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/main/EXE-00.toc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/main/PKG-00.toc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/main/PYZ-00.pyz" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/main/PYZ-00.toc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/main/base_library.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/main/main.pkg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/main/warn-main.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/main/xref-main.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/main.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.spec" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manager/1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manager/GothamPro-Bold.cw127.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manager/GothamPro-Bold.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manager/GothamPro-Bold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manager/GothamPro.cw127.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manager/GothamPro.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manager/GothamPro.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manually_change_config.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manually_change_config.spec" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/create_debt_document.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manager/app_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/manager/app_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manager/config_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/manager/config_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manager/updater.py" beforeDir="false" afterPath="$PROJECT_DIR$/manager/updater.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manually_change_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/manually_change_config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/custom_widgets.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/custom_widgets.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/stocks.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/models/stocks.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/create_repair_document.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/create_repair_document.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/debt_process.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/debt_process.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/form.py" beforeDir="false" afterPath="$PROJECT_DIR$/template/form.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uiform.ui" beforeDir="false" afterPath="$PROJECT_DIR$/uiform.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ИсторияОтправлений.xlsx" beforeDir="false" />
-    </list>
+    <list default="true" id="ce1aed9f-3be6-4ff8-ab77-58e388c46130" name="Changes" comment="0" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -263,7 +220,23 @@
       <option name="project" value="LOCAL" />
       <updated>1707091671064</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="0">
+      <option name="closed" value="true" />
+      <created>1707169544085</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1707169544085</updated>
+    </task>
+    <task id="LOCAL-00009" summary="0">
+      <option name="closed" value="true" />
+      <created>1707169567211</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1707169567211</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
