@@ -1,14 +1,17 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from fpdf import FPDF
 
 import fpdf
 from pathlib import Path
 import os
+import shutil
 def create_pdf(data)->None:
     pdf = FPDF()
     pdf.add_page(orientation='L')
 
     delta_copy = pdf.w / 4
-    path = str(Path(__file__).parent.absolute())
+    path = os.getcwd()
 
     pdf.image(path + '\\' + '1.jpg', x=10, y=10, w=50, h=12)
     pdf.image(path + '\\' + '1.jpg', x=pdf.w / 2 + 10, y=10, w=50, h=12)
@@ -130,11 +133,18 @@ def create_pdf(data)->None:
         pdf.ln(cell_height * len(strings))
 
     try:
-        str_save = data['ExcelPath'] + '/АрхивРемонтов/Накладная_по_ремонту_' + str(data["№ Заказа"]) + '.pdf'
+        # str_save = data['ExcelPath'] + '/АрхивРемонтов/Накладная_по_ремонту_' + str(data["№ Заказа"]) + '.pdf'
+        str_save = 'Накладная_по_ремонту_' + str(data["№ Заказа"]) + '.pdf'
         pdf.output(str_save)
+
+        shutil.move('Накладная_по_ремонту_' + str(data["№ Заказа"]) + '.pdf',
+                    data['ExcelPath'] + '/АрхивРемонтов/Накладная_по_ремонту_' + str(data["№ Заказа"]) + '.pdf')
+
+        os.system(data['ExcelPath'] + f'/АрхивРемонтов/Накладная_по_ремонту_{data["№ Заказа"]}.pdf')
+
     except Exception as e:
         print(e.__str__())
-    os.system(data['ExcelPath'] + f'/АрхивРемонтов/Накладная_по_ремонту_{data["№ Заказа"]}.pdf')
+
 def on_create(pdf_data):
     create_pdf(pdf_data)
 

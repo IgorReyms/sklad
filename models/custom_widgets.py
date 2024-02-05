@@ -1,3 +1,5 @@
+import os
+
 from PySide6 import QtCore, QtGui, QtWidgets
 from PySide6.QtCore import Qt, QSortFilterProxyModel
 from PySide6.QtWidgets import QCompleter, QComboBox
@@ -32,7 +34,7 @@ class ExtendedComboBox(QComboBox):
     # on selection of an item from the completer, select the corresponding item from combobox
     def read_stocks(self) -> list:
         try:
-            df_items = pandas.read_excel(str(pathlib.Path(__file__).parent.resolve()) + '\\' + "stocks.xlsx", header=1, usecols=[2])
+            df_items = pandas.read_excel(str(os.getcwd().split('manager')[0] + "\\models\\stocks.xlsx"), header=1, usecols=[2])
             return df_items["Товар"].tolist()
         except Exception as e:
             raise CustomException(e.__str__())
@@ -58,3 +60,4 @@ class ExtendedComboBox(QComboBox):
         self.completer.setCompletionColumn(column)
         self.pFilterModel.setFilterKeyColumn(column)
         super(ExtendedComboBox, self).setModelColumn(column)
+

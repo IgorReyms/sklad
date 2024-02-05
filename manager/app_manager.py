@@ -1,14 +1,14 @@
 import os
 import sys
 import datetime
-from config_manager import ConfigParser
+from manager.config_manager import ConfigParser
 from template.form import Ui_MainWindow
 from PySide6 import QtCore, QtGui, QtWidgets
 from installation.install import install_process
 from models.exceptions import CustomException
 from models.custom_widgets import ExtendedComboBox
 from src.repair_process import manage_data
-from updater import update_repair_page, update_debt_page
+from manager.updater import update_repair_page, update_debt_page
 from src.debt_process import manage_debt_data
 class MainForm(QtWidgets.QMainWindow):
     def __init__(self):
@@ -50,7 +50,8 @@ class MainForm(QtWidgets.QMainWindow):
         self.ui.TableRepairDocField.verticalHeader().setVisible(False)
         self.ui.TableRepairDocField.setContextMenuPolicy(QtGui.Qt.ContextMenuPolicy.CustomContextMenu)
         self.ui.TableRepairDocField.customContextMenuRequested.connect(self.repairTableContextMenu)
-        update_repair_page(self, 'repair_status_info')
+        if config.config["Status"] == "Installed":
+            update_repair_page(self, 'repair_status_info')
         # логика поиска изделия
         self.ui.RepairFindItem.insertRow(0)
         self.ui.RepairFindItem.insertColumn(0)
@@ -69,14 +70,28 @@ class MainForm(QtWidgets.QMainWindow):
         self.ui.FinderRepairInfoBtn.clicked.connect(self.repair_finder_information)
 
         # логика кнопок страницы ЗАдолженность
-        update_debt_page(self, 'debt_status_info')
+        if config.config["Status"] == "Installed":
+            update_debt_page(self, 'debt_status_info')
         self.ui.CreateDebtBtn.clicked.connect(self.create_debt)
         self.ui.DebtOutBtn.clicked.connect(self.change_debt)
         self.ui.DebtFindBtn.clicked.connect(self.find_debt)
 
+        self.ui.DebtReportPrint.clicked.connect(self.printing_debt_report)
     def create_debt(self):
         try:
-            manage_debt_data('', 1)
+
+            debt_info = {
+                '№ Задолженности': [self.ui.DebtNoTextEdit.toPlainText()],
+                'Дата создания': [self.ui.DebtDateCreateTextEdit.toPlainText()],
+                'Клиент': [self.ui.DebtClientNameTextEdit.toPlainText()],
+                'Изделие': [self.ui.DebtItemTable.cellWidget(0, 0).get_data()],
+                'Исходный размер задолженности':[int(self.ui.DebtItemQtyTextEdit.toPlainText())],
+                'Дата последней выдачи': [''],
+                'Количество выданных изделий':[0],
+                'Остаток по долгу': [int(self.ui.DebtItemQtyTextEdit.toPlainText())]
+            }
+
+            manage_debt_data(debt_info, 1)
             QtWidgets.QMessageBox.information(self, 'Информация', f"Задолженность {self.ui.DebtNoTextEdit.toPlainText()} учтена!")
             update_debt_page(self, 'create_debt')
         except Exception as e:
@@ -85,8 +100,18 @@ class MainForm(QtWidgets.QMainWindow):
 
     def change_debt(self):
         try:
-            manage_debt_data('', 2)
-            QtWidgets.QMessageBox.information(self, 'Информация', f"Задолженность {self.ui.DebtNoTextEdit.toPlainText()} изменена!")
+            debt_info = {
+                '№ Задолженности': [self.ui.DebtOutNoTextEdit.toPlainText()],
+                'Дата создания': [''],
+                'Клиент': [''],
+                'Изделие': [self.ui.DebtOutItemTable.cellWidget(0, 0).get_data()],
+                'Исходный размер задолженности': [self.ui.DebtItemQtyTextEdit.toPlainText()],
+                'Дата последней выдачи':[self.ui.DebtOutDateTextEdit.toPlainText()],
+                'Количество выданных изделий': [self.ui.DebtOutItemQtyTextEdit.toPlainText()],
+                'Остаток по долгу': [self.ui.DebtItemQtyTextEdit.toPlainText()]
+            }
+            manage_debt_data(debt_info, 2)
+            QtWidgets.QMessageBox.information(self, 'Информация', f"Задолженность {self.ui.DebtOutNoTextEdit.toPlainText()} изменена!")
             update_debt_page(self, 'change_debt')
         except Exception as e:
             QtWidgets.QMessageBox.critical(self, 'Ошибка',
@@ -95,13 +120,42 @@ class MainForm(QtWidgets.QMainWindow):
 
     def find_debt(self):
         try:
-            manage_debt_data('', 3)
-            QtWidgets.QMessageBox.information(self, 'Информация', f"Информация по  задолженностям найдена!")
+            print(self.ui.DebtInfoItemTable.cellWidget(0, 0).get_data())
+            debt_info = {
+                '№ Задолженности': [self.ui.DebtFindByDebtNoTextEdit.toPlainText()],
+                'Дата создания': [''],
+                'Клиент': [self.ui.DebtFindByClientNameTextEdit.toPlainText()],
+                'Изделие': [self.ui.DebtInfoItemTable.cellWidget(0, 0).get_data()],
+                'Исходный размер задолженности': [0],
+                'Дата последней выдачи':[self.ui.DebtFindByLastDateTextEdit.toPlainText()],
+                'Количество выданных изделий': [0],
+                'Остаток по долгу': [0]
+            }
+            answer = manage_debt_data(debt_info, 3)
+
+            self.ui.DebtInfoTextEdit.setPlainText(answer)
             update_debt_page(self, 'find_debt')
         except Exception as e:
             QtWidgets.QMessageBox.critical(self, 'Ошибка',
                                            f'При поиске задолженностей произошла ошибка. Причина: {e.__str__()}')
-
+    def printing_debt_report(self):
+        try:
+            debt_info = {
+                '№ Задолженности': [self.ui.DebtReportNoTextEdit.toPlainText()],
+                'Дата создания': [''],
+                'Клиент': [''],
+                'Изделие': [''],
+                'Исходный размер задолженности': [0],
+                'Дата последней выдачи': [''],
+                'Количество выданных изделий': [''],
+                'Остаток по долгу': ['']
+            }
+            manage_debt_data(debt_info, 4)
+            QtWidgets.QMessageBox.information(self, 'Информация',
+                                           f'Печатная форма по задолжностям сформирована.')
+        except Exception as e:
+            QtWidgets.QMessageBox.critical(self, 'Ошибка',
+                                           f'При создании печатной формы произошла ошибка. Причина: {e.__str__()}')
     def installation_app(self) -> bool:
         userResponse = QtWidgets.QMessageBox.question(self, 'Предупреждение', 'Вы уверены?')
         if userResponse == QtWidgets.QMessageBox.StandardButton.Yes:
@@ -113,6 +167,8 @@ class MainForm(QtWidgets.QMainWindow):
                     self.ui.repairMenuButton.setStyleSheet(self.unblockedStyleOfRepairBtn)
                     self.ui.debtMenuButton.setStyleSheet(self.unblockedStyleOfDebtBtn)
                     self.ui.stackedWidget.setCurrentIndex(2)
+                    update_repair_page(self, 'repair_status_info')
+                    update_debt_page(self, 'debt_status_info')
                 except CustomException as excptn:
                     QtWidgets.QMessageBox.critical(self, 'Ошибка', f'Установка не удалась по причине: {excptn.__str__()}')
         return True
@@ -349,4 +405,5 @@ def check_integrity(window) -> bool:
             return False
     return True
 
-on_start()
+def start_project() -> None:
+    on_start()

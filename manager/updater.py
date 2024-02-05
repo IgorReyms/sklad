@@ -1,4 +1,4 @@
-from config_manager import ConfigParser
+from manager.config_manager import ConfigParser
 import pandas as pd
 import datetime
 from models.custom_widgets import ExtendedComboBox
@@ -9,13 +9,27 @@ def update_debt_page(window, flag):
         window.ui.DebtNoTextEdit.setPlainText(config.config["DebtInfo"]["LastDebtNo"])
         window.ui.DebtDateCreateTextEdit.setPlainText(str(get_date()))
         window.ui.DebtOutDateTextEdit.setPlainText(str(get_date()))
+
         window.ui.DebtItemTable.setRowCount(0)
         window.ui.DebtItemTable.insertRow(0)
         window.ui.DebtItemTable.insertColumn(0)
         window.ui.DebtItemTable.verticalHeader().setVisible(False)
         window.ui.DebtItemTable.setCellWidget(0, 0, ExtendedComboBox(window))
+
+        window.ui.DebtOutItemTable.setRowCount(0)
+        window.ui.DebtOutItemTable.insertRow(0)
+        window.ui.DebtOutItemTable.insertColumn(0)
+        window.ui.DebtOutItemTable.verticalHeader().setVisible(False)
+        window.ui.DebtOutItemTable.setCellWidget(0, 0, ExtendedComboBox(window))
+
+        window.ui.DebtInfoItemTable.setRowCount(0)
+        window.ui.DebtInfoItemTable.insertRow(0)
+        window.ui.DebtInfoItemTable.insertColumn(0)
+        window.ui.DebtInfoItemTable.verticalHeader().setVisible(False)
+        window.ui.DebtInfoItemTable.setCellWidget(0, 0, ExtendedComboBox(window))
+
     if flag == 'create_debt':
-        last_no = config.config["DebtInfo"]["LastDebtNo"]
+        last_no = window.ui.DebtNoTextEdit.toPlainText()
         new_no = create_new_no(last_no)
         config.config["DebtInfo"]["LastDebtNo"] = new_no
         config.save_config()
@@ -30,12 +44,19 @@ def update_debt_page(window, flag):
         window.ui.DebtItemTable.verticalHeader().setVisible(False)
         window.ui.DebtNoTextEdit.setPlainText(config.config["DebtInfo"]["LastDebtNo"])
     if flag == 'change_debt':
-        window.ui.DebtOutItemNameTextEdit.clear()
+        window.ui.DebtOutItemTable.setRowCount(0)
+        window.ui.DebtOutItemTable.insertRow(0)
+
+        window.ui.DebtOutItemTable.verticalHeader().setVisible(False)
+        window.ui.DebtOutItemTable.setCellWidget(0, 0, ExtendedComboBox(window))
         window.ui.DebtOutItemQtyTextEdit.clear()
 
     if flag == 'find_debt':
+        window.ui.DebtFindByDebtNoTextEdit.clear()
         window.ui.DebtFindByClientNameTextEdit.clear()
-        window.ui.DebtFindByItemNameTextEdit.clear()
+        window.ui.DebtInfoItemTable.setRowCount(0)
+        window.ui.DebtInfoItemTable.insertRow(0)
+        window.ui.DebtInfoItemTable.setCellWidget(0, 0, ExtendedComboBox(window))
         window.ui.DebtFindByLastDateTextEdit.clear()
 
 def update_repair_page(window, flag):
