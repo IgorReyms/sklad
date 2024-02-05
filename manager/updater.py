@@ -1,11 +1,49 @@
 from config_manager import ConfigParser
 import pandas as pd
+import datetime
+from models.custom_widgets import ExtendedComboBox
+def update_debt_page(window, flag):
+    config = ConfigParser()
+    if flag == 'debt_status_info':
+        window.ui.DebtNoTextEdit.setPlainText(config.config["DebtInfo"]["LastDebtNo"])
+        window.ui.DebtNoTextEdit.setPlainText(config.config["DebtInfo"]["LastDebtNo"])
+        window.ui.DebtDateCreateTextEdit.setPlainText(str(get_date()))
+        window.ui.DebtOutDateTextEdit.setPlainText(str(get_date()))
+        window.ui.DebtItemTable.setRowCount(0)
+        window.ui.DebtItemTable.insertRow(0)
+        window.ui.DebtItemTable.insertColumn(0)
+        window.ui.DebtItemTable.verticalHeader().setVisible(False)
+        window.ui.DebtItemTable.setCellWidget(0, 0, ExtendedComboBox(window))
+    if flag == 'create_debt':
+        last_no = config.config["DebtInfo"]["LastDebtNo"]
+        new_no = create_new_no(last_no)
+        config.config["DebtInfo"]["LastDebtNo"] = new_no
+        config.save_config()
+        window.ui.DebtNoTextEdit.clear()
+
+        window.ui.DebtItemQtyTextEdit.clear()
+
+        window.ui.DebtItemTable.setRowCount(0)
+        window.ui.DebtItemTable.insertRow(0)
+        window.ui.DebtItemTable.setCellWidget(0, 0, ExtendedComboBox(window))
+
+        window.ui.DebtItemTable.verticalHeader().setVisible(False)
+        window.ui.DebtNoTextEdit.setPlainText(config.config["DebtInfo"]["LastDebtNo"])
+    if flag == 'change_debt':
+        window.ui.DebtOutItemNameTextEdit.clear()
+        window.ui.DebtOutItemQtyTextEdit.clear()
+
+    if flag == 'find_debt':
+        window.ui.DebtFindByClientNameTextEdit.clear()
+        window.ui.DebtFindByItemNameTextEdit.clear()
+        window.ui.DebtFindByLastDateTextEdit.clear()
+
 def update_repair_page(window, flag):
     config = ConfigParser()
 
     if flag == 'create_repair':
         last_no = config.config["RepairInfo"]["LastRepairNo"]
-        new_no = create_new_repair_no(last_no)
+        new_no = create_new_no(last_no)
         config.config["RepairInfo"]["LastRepairNo"] = new_no
         config.save_config()
 
@@ -48,7 +86,7 @@ def create_new_repair_shipment_no(last_no) -> str:
     last_no = last_no.split("-")
     new_no = last_no[0] + '-' + str(int(last_no[1]) + 1)
     return new_no
-def create_new_repair_no(last_no) -> str:
+def create_new_no(last_no) -> str:
     last_no = last_no.split("-")
     new_no = last_no[0] + '-' + str(int(last_no[1]) + 1)
     return new_no
@@ -67,3 +105,5 @@ def update_repair_info() -> list:
     count_good = len(filtered_df)
     return [count_bad, count_good, count_all]
 
+def get_date():
+        return datetime.datetime.today().strftime('%d-%m-%Y')

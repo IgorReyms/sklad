@@ -5,21 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce1aed9f-3be6-4ff8-ab77-58e388c46130" name="Changes" comment="0">
-      <change afterPath="$PROJECT_DIR$/src/1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GothamPro-Bold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/RepairDocument.docx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/create_repair_document.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gothampro.cw127.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gothampro.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gothampro.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/debt_process.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/installation/ИсторияОтправлений.xlsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/manager/app_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/manager/app_manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/manager/updater.py" beforeDir="false" afterPath="$PROJECT_DIR$/manager/updater.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manager/ИсторияОтправлений.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/create_repair.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/create_repair.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/create_repair.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/repair_process.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/template/form.py" beforeDir="false" afterPath="$PROJECT_DIR$/template/form.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/uiform.ui" beforeDir="false" afterPath="$PROJECT_DIR$/uiform.ui" afterDir="false" />
     </list>
@@ -129,7 +120,31 @@
       <option name="project" value="LOCAL" />
       <updated>1707059741993</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="0">
+      <option name="closed" value="true" />
+      <created>1707088930598</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1707088930598</updated>
+    </task>
+    <task id="LOCAL-00005" summary="0">
+      <option name="closed" value="true" />
+      <created>1707088958201</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1707088958201</updated>
+    </task>
+    <task id="LOCAL-00006" summary="0">
+      <option name="closed" value="true" />
+      <created>1707089000704</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1707089000704</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -7,8 +7,9 @@ from PySide6 import QtCore, QtGui, QtWidgets
 from installation.install import install_process
 from models.exceptions import CustomException
 from models.custom_widgets import ExtendedComboBox
-from src.create_repair import manage_data
-from updater import update_repair_page
+from src.repair_process import manage_data
+from updater import update_repair_page, update_debt_page
+from src.debt_process import manage_debt_data
 class MainForm(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
@@ -66,6 +67,41 @@ class MainForm(QtWidgets.QMainWindow):
 
         #Поиск информации по ремонту
         self.ui.FinderRepairInfoBtn.clicked.connect(self.repair_finder_information)
+
+        # логика кнопок страницы ЗАдолженность
+        update_debt_page(self, 'debt_status_info')
+        self.ui.CreateDebtBtn.clicked.connect(self.create_debt)
+        self.ui.DebtOutBtn.clicked.connect(self.change_debt)
+        self.ui.DebtFindBtn.clicked.connect(self.find_debt)
+
+    def create_debt(self):
+        try:
+            manage_debt_data('', 1)
+            QtWidgets.QMessageBox.information(self, 'Информация', f"Задолженность {self.ui.DebtNoTextEdit.toPlainText()} учтена!")
+            update_debt_page(self, 'create_debt')
+        except Exception as e:
+            QtWidgets.QMessageBox.critical(self, 'Ошибка',
+                                           f'При учете новой задолженности произошла ошибка. Причина: {e.__str__()}')
+
+    def change_debt(self):
+        try:
+            manage_debt_data('', 2)
+            QtWidgets.QMessageBox.information(self, 'Информация', f"Задолженность {self.ui.DebtNoTextEdit.toPlainText()} изменена!")
+            update_debt_page(self, 'change_debt')
+        except Exception as e:
+            QtWidgets.QMessageBox.critical(self, 'Ошибка',
+                                           f'При изменении задолженности произошла ошибка. Причина: {e.__str__()}')
+
+
+    def find_debt(self):
+        try:
+            manage_debt_data('', 3)
+            QtWidgets.QMessageBox.information(self, 'Информация', f"Информация по  задолженностям найдена!")
+            update_debt_page(self, 'find_debt')
+        except Exception as e:
+            QtWidgets.QMessageBox.critical(self, 'Ошибка',
+                                           f'При поиске задолженностей произошла ошибка. Причина: {e.__str__()}')
+
     def installation_app(self) -> bool:
         userResponse = QtWidgets.QMessageBox.question(self, 'Предупреждение', 'Вы уверены?')
         if userResponse == QtWidgets.QMessageBox.StandardButton.Yes:

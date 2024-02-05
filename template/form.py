@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiformlXUUBq.ui'
+## Form generated from reading UI file 'uiformyIJTkg.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.6.1
 ##
@@ -382,12 +382,6 @@ class Ui_MainWindow(object):
         self.label_25 = QLabel(self.debtPage)
         self.label_25.setObjectName(u"label_25")
         self.label_25.setGeometry(QRect(530, 60, 91, 20))
-        self.ItemFindNameTextEdit = QPlainTextEdit(self.debtPage)
-        self.ItemFindNameTextEdit.setObjectName(u"ItemFindNameTextEdit")
-        self.ItemFindNameTextEdit.setGeometry(QRect(630, 50, 311, 31))
-        self.DebtItemNameTextEdit = QPlainTextEdit(self.debtPage)
-        self.DebtItemNameTextEdit.setObjectName(u"DebtItemNameTextEdit")
-        self.DebtItemNameTextEdit.setGeometry(QRect(150, 90, 281, 31))
         self.label_26 = QLabel(self.debtPage)
         self.label_26.setObjectName(u"label_26")
         self.label_26.setGeometry(QRect(10, 180, 141, 16))
@@ -466,6 +460,18 @@ class Ui_MainWindow(object):
         self.DebtInfoTextEdit = QPlainTextEdit(self.debtPage)
         self.DebtInfoTextEdit.setObjectName(u"DebtInfoTextEdit")
         self.DebtInfoTextEdit.setGeometry(QRect(590, 410, 381, 291))
+        self.DebtItemTable = QTableWidget(self.debtPage)
+        self.DebtItemTable.setObjectName(u"DebtItemTable")
+        self.DebtItemTable.setGeometry(QRect(150, 90, 281, 31))
+        self.DebtItemTable.setCornerButtonEnabled(False)
+        self.DebtItemTable.horizontalHeader().setVisible(False)
+        self.DebtItemTable.horizontalHeader().setStretchLastSection(True)
+        self.itemFinder = QTableWidget(self.debtPage)
+        self.itemFinder.setObjectName(u"itemFinder")
+        self.itemFinder.setGeometry(QRect(630, 60, 321, 31))
+        self.itemFinder.setCornerButtonEnabled(False)
+        self.itemFinder.horizontalHeader().setVisible(False)
+        self.itemFinder.horizontalHeader().setStretchLastSection(True)
         self.stackedWidget.addWidget(self.debtPage)
 
         self.horizontalLayout_2.addWidget(self.stackedWidget)
@@ -479,7 +485,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(3)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
