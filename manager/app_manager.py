@@ -8,7 +8,7 @@ from installation.install import install_process
 from models.exceptions import CustomException
 from models.custom_widgets import ExtendedComboBox
 from src.repair_process import manage_data
-from manager.updater import update_repair_page, update_debt_page
+from manager.updater import update_repair_page, update_debt_page, update_settings_page
 from src.debt_process import manage_debt_data
 class MainForm(QtWidgets.QMainWindow):
     def __init__(self):
@@ -36,12 +36,23 @@ class MainForm(QtWidgets.QMainWindow):
         self.ui.CheckBoxRepairBtn.stateChanged.connect(self.settingsVisibility)
         self.ui.CheckBoxInstallBtn.stateChanged.connect(self.settingsVisibility)
         self.ui.CheckBoxDebtButton.stateChanged.connect(self.settingsVisibility)
+
+        #логика кнопок Настройки конфигурации
+        self.ui.DeleteStringIntoStocksTable.insertRow(0)
+        self.ui.DeleteStringIntoStocksTable.insertColumn(0)
+        self.ui.DeleteStringIntoStocksTable.verticalHeader().setVisible(False)
+        self.ui.DeleteStringIntoStocksTable.setCellWidget(0, 0, ExtendedComboBox(self))
+        self.ui.CreateStringIntoStocksBtn.clicked.connect(self.settings_CreateItemStocks)
+        self.ui.DeleteStringIntoStocksBtn.clicked.connect(self.settings_DeleteItemStocks)
+
+
         # логика кнопок страницы Настройки-->добавить или удалить поля в эксель файле
-        self.ui.InsertFieldBtn.clicked.connect(lambda: self.settingsChangeExcelFields(1))
-        self.ui.DropFieldBtn.clicked.connect(lambda: self.settingsChangeExcelFields(0))
+        # self.ui.InsertFieldBtn.clicked.connect(lambda: self.settingsChangeExcelFields(1))
+        # self.ui.DropFieldBtn.clicked.connect(lambda: self.settingsChangeExcelFields(0))
 
         # логика кнопок страницы Настройки-->сохранение настроек
         self.ui.SaveSettingsBtn.clicked.connect(self.settingsSave)
+
 
         # логика кнопок страницы Ремонтов
         self.ui.RepairNoInTextEdit.setPlainText(config.config["RepairInfo"]["LastRepairNo"])
@@ -50,8 +61,8 @@ class MainForm(QtWidgets.QMainWindow):
         self.ui.TableRepairDocField.verticalHeader().setVisible(False)
         self.ui.TableRepairDocField.setContextMenuPolicy(QtGui.Qt.ContextMenuPolicy.CustomContextMenu)
         self.ui.TableRepairDocField.customContextMenuRequested.connect(self.repairTableContextMenu)
-        if config.config["Status"] == "Installed":
-            update_repair_page(self, 'repair_status_info')
+
+
         # логика поиска изделия
         self.ui.RepairFindItem.insertRow(0)
         self.ui.RepairFindItem.insertColumn(0)
@@ -70,13 +81,59 @@ class MainForm(QtWidgets.QMainWindow):
         self.ui.FinderRepairInfoBtn.clicked.connect(self.repair_finder_information)
 
         # логика кнопок страницы ЗАдолженность
-        if config.config["Status"] == "Installed":
-            update_debt_page(self, 'debt_status_info')
+
         self.ui.CreateDebtBtn.clicked.connect(self.create_debt)
         self.ui.DebtOutBtn.clicked.connect(self.change_debt)
         self.ui.DebtFindBtn.clicked.connect(self.find_debt)
-
         self.ui.DebtReportPrint.clicked.connect(self.printing_debt_report)
+        if config.config["Status"] == "Installed":
+            update_debt_page(self, 'debt_status_info')
+            update_settings_page(self)
+            update_repair_page(self, 'repair_status_info')
+    def settings_CreateItemStocks(self):
+        self.temp = ExtendedComboBox(self)
+        try:
+            self.temp.create_stock(stock=self.ui.CreateStringIntoStocksTextEdit.toPlainText())
+            QtWidgets.QMessageBox.information(self, 'Информация', f'Изделие {self.ui.CreateStringIntoStocksTextEdit.toPlainText()} успешно добавлено в stocks!')
+            self.ui.CreateStringIntoStocksTextEdit.clear()
+            self.ui.RepairFindItem.setRowCount(0)
+            self.ui.RepairFindItem.insertRow(0)
+            self.ui.RepairFindItem.setCellWidget(0, 0, ExtendedComboBox(self))
+            self.ui.DebtItemTable.setRowCount(0)
+            self.ui.DebtItemTable.insertRow(0)
+            self.ui.DebtItemTable.setCellWidget(0, 0, ExtendedComboBox(self))
+            self.ui.DebtOutItemTable.setRowCount(0)
+            self.ui.DebtOutItemTable.insertRow(0)
+            self.ui.DebtOutItemTable.setCellWidget(0, 0, ExtendedComboBox(self))
+            self.ui.DeleteStringIntoStocksTable.setRowCount(0)
+            self.ui.DeleteStringIntoStocksTable.insertRow(0)
+            self.ui.DeleteStringIntoStocksTable.setCellWidget(0, 0, ExtendedComboBox(self))
+
+        except Exception as e:
+            QtWidgets.QMessageBox.critical(self, "Ошибка!",f'Не удалось добавить в stock.xlsx. Причина: {e.__str__()}')
+    def settings_DeleteItemStocks(self):
+        self.temp = ExtendedComboBox(self)
+        try:
+            self.temp.delete_stock(stock=self.ui.DeleteStringIntoStocksTable.cellWidget(0, 0).get_data())
+            QtWidgets.QMessageBox.information(self, 'Информация',
+                                              f'Изделие {self.ui.DeleteStringIntoStocksTable.cellWidget(0, 0).get_data()} удалено из stocks!')
+            self.ui.DeleteStringIntoStocksTable.clear()
+            self.ui.RepairFindItem.setRowCount(0)
+            self.ui.RepairFindItem.insertRow(0)
+            self.ui.RepairFindItem.setCellWidget(0, 0, ExtendedComboBox(self))
+            self.ui.DebtItemTable.setRowCount(0)
+            self.ui.DebtItemTable.insertRow(0)
+            self.ui.DebtItemTable.setCellWidget(0, 0, ExtendedComboBox(self))
+            self.ui.DebtOutItemTable.setRowCount(0)
+            self.ui.DebtOutItemTable.insertRow(0)
+            self.ui.DebtOutItemTable.setCellWidget(0, 0, ExtendedComboBox(self))
+            self.ui.DeleteStringIntoStocksTable.setRowCount(0)
+            self.ui.DeleteStringIntoStocksTable.insertRow(0)
+            self.ui.DeleteStringIntoStocksTable.setCellWidget(0, 0, ExtendedComboBox(self))
+
+        except Exception as e:
+            QtWidgets.QMessageBox.critical(self, "Ошибка!", f'Не удалось добавить в stock.xlsx. Причина: {e.__str__()}')
+
     def create_debt(self):
         try:
 
@@ -150,7 +207,9 @@ class MainForm(QtWidgets.QMainWindow):
                 'Количество выданных изделий': [''],
                 'Остаток по долгу': ['']
             }
-            manage_debt_data(debt_info, 4)
+            fonts = {"MainFont": int(self.ui.FontSizeMainTextEdit.toPlainText()),
+                     "NotMainFont": int(self.ui.FontSizeNotMainTextEdit.toPlainText())}
+            manage_debt_data(debt_info, 4,fonts=fonts)
             QtWidgets.QMessageBox.information(self, 'Информация',
                                            f'Печатная форма по задолжностям сформирована.')
         except Exception as e:
@@ -192,44 +251,65 @@ class MainForm(QtWidgets.QMainWindow):
             self.ui.installationMenuButton.setVisible(True)
     def settingsSave(self) -> None:
         config = ConfigParser()
+
         if self.ui.CheckBoxRepairBtn.checkState().value == 0:
-            config.config["Settings"]["repairBtnVisible"] = False
+                config.config["Settings"]["repairBtnVisible"] = False
         elif self.ui.CheckBoxRepairBtn.checkState().value == 2:
-            config.config["Settings"]["repairBtnVisible"] = True
+                config.config["Settings"]["repairBtnVisible"] = True
         if self.ui.CheckBoxDebtButton.checkState().value == 0:
-            config.config["Settings"]["debtBtnVisible"] = False
+                config.config["Settings"]["debtBtnVisible"] = False
         elif self.ui.CheckBoxDebtButton.checkState().value == 2:
-            config.config["Settings"]["debtBtnVisible"] = True
+                config.config["Settings"]["debtBtnVisible"] = True
         if self.ui.CheckBoxDebtButton.checkState().value == 0:
-            config.config["Settings"]["installationBtnVisible"] = False
+                config.config["Settings"]["installationBtnVisible"] = False
         elif self.ui.CheckBoxDebtButton.checkState().value == 2:
-            config.config["Settings"]["installationBtnVisible"] = True
+                config.config["Settings"]["installationBtnVisible"] = True
+
+
+        userResponse = QtWidgets.QMessageBox.question(self, 'Предупреждение', 'Вы уверены, что хотите изменить структуру номера документов?')
+        if userResponse == QtWidgets.QMessageBox.StandardButton.Yes:
+                    message_values = [config.config["RepairInfo"]["LastRepairNo"],
+                                      config.config["DebtInfo"]["LastDebtNo"],
+                                      self.ui.SettingsRepairPrefixTextEdit.toPlainText() + '-' + str(self.ui.SetingsRepairFirstNoTextEdit.toPlainText()),
+                                      self.ui.SettingsRepairPrefixTextEdit_2.toPlainText() + '-' + str(self.ui.SetingsRepairFirstNoTextEdit_2.toPlainText()),
+                                      config.config["ReportInfo"]["MainFontSize"],
+                                      config.config["ReportInfo"]["NotMainFontSize"],
+                                      self.ui.FontSizeMainTextEdit.toPlainText(),
+                                      self.ui.FontSizeNotMainTextEdit.toPlainText()]
+
+                    config.config["RepairInfo"]["LastRepairNo"] = self.ui.SettingsRepairPrefixTextEdit.toPlainText() + '-' + str(self.ui.SetingsRepairFirstNoTextEdit.toPlainText())
+                    config.config["DebtInfo"]["LastDebtNo"] = self.ui.SettingsRepairPrefixTextEdit_2.toPlainText() + '-' + str(self.ui.SetingsRepairFirstNoTextEdit_2.toPlainText())
+                    config.config["ReportInfo"]["MainFontSize"] = self.ui.FontSizeMainTextEdit.toPlainText()
+                    config.config["ReportInfo"]["NotMainFontSize"] = self.ui.FontSizeNotMainTextEdit.toPlainText()
+
         try:
             config.save_config()
-            QtWidgets.QMessageBox.information(self, 'Информация',
-                                           f'Настройки сохранены!')
-        except:
-            QtWidgets.QMessageBox.critical(self, 'Ошибка',
-                                           f'При сохранении настроек возникла ошибка!')
+            QtWidgets.QMessageBox.information(self, 'Информация', f'Настройки файла конфигурации сохранены! \n{message_values[0]}-->{message_values[2]}\n{message_values[1]}-->{message_values[3]}\nГлавный '
+                                                                  f'шрифт {message_values[4]}-->{message_values[6]} \nМладший шрифт{message_values[5]}-->{message_values[7]}')
+            update_settings_page(self)
 
-    def settingsChangeExcelFields(self, operation_flag) -> None:
-        if check_integrity(self):
-            config = ConfigParser()
-            if operation_flag == 0:
-                if os.path.exists(config.config["ExcelPath"] + "/" + self.ui.ExcelNameTextEdit.toPlainText() + ".xlsx"):
-                    QtWidgets.QMessageBox.information(self, 'Информация',"Скоро данная функция будет работать!")
-                else:
-                    QtWidgets.QMessageBox.critical(self, 'Ошибка',
-                                                   f'Файл {self.ui.ExcelNameTextEdit.toPlainText()}.xlsx не найден! Проверьте верность названия!')
-            elif operation_flag == 1:
-                if os.path.exists(config.config["ExcelPath"] + "/" + self.ui.ExcelNameTextEdit.toPlainText() + ".xlsx"):
-                    QtWidgets.QMessageBox.information(self, 'Информация',"Скоро данная функция будет работать!")
-                else:
-                    QtWidgets.QMessageBox.critical(self, 'Ошибка',
-                                                   f'Файл {self.ui.ExcelNameTextEdit.toPlainText()}.xlsx не найден! Проверьте верность названия!')
-        else:
+        except Exception as e:
             QtWidgets.QMessageBox.critical(self, 'Ошибка',
-                                           f'Из-за нарушения целостности невозможно изменить файл!')
+                                           f'При сохранении настроек возникла ошибка! Причина {e.__str__()}')
+
+    # def settingsChangeExcelFields(self, operation_flag) -> None:
+    #     if check_integrity(self):
+    #         config = ConfigParser()
+    #         if operation_flag == 0:
+    #             if os.path.exists(config.config["ExcelPath"] + "/" + self.ui.ExcelNameTextEdit.toPlainText() + ".xlsx"):
+    #                 QtWidgets.QMessageBox.information(self, 'Информация',"Скоро данная функция будет работать!")
+    #             else:
+    #                 QtWidgets.QMessageBox.critical(self, 'Ошибка',
+    #                                                f'Файл {self.ui.ExcelNameTextEdit.toPlainText()}.xlsx не найден! Проверьте верность названия!')
+    #         elif operation_flag == 1:
+    #             if os.path.exists(config.config["ExcelPath"] + "/" + self.ui.ExcelNameTextEdit.toPlainText() + ".xlsx"):
+    #                 QtWidgets.QMessageBox.information(self, 'Информация',"Скоро данная функция будет работать!")
+    #             else:
+    #                 QtWidgets.QMessageBox.critical(self, 'Ошибка',
+    #                                                f'Файл {self.ui.ExcelNameTextEdit.toPlainText()}.xlsx не найден! Проверьте верность названия!')
+    #     else:
+    #         QtWidgets.QMessageBox.critical(self, 'Ошибка',
+    #                                        f'Из-за нарушения целостности невозможно изменить файл!')
 
     def get_date(self):
         return datetime.datetime.today().strftime('%d-%m-%Y')
@@ -295,8 +375,9 @@ class MainForm(QtWidgets.QMainWindow):
             repairs.append(data.copy())
             data = static_repair_data.copy()
 
+        fonts = {"MainFont": int(self.ui.FontSizeMainTextEdit.toPlainText()), "NotMainFont": int(self.ui.FontSizeNotMainTextEdit.toPlainText())}
         try:
-            manage_data(repairs, 1)
+            manage_data(repairs, 1,fonts=fonts)
             QtWidgets.QMessageBox.information(self, 'Информация', f"Ремонт {self.ui.RepairNoInTextEdit.toPlainText()} учтен! Создано строк:{len(repairs)}")
         except Exception as e:
             QtWidgets.QMessageBox.critical(self, 'Ошибка',

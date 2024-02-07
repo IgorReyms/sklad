@@ -5,7 +5,7 @@ from manager.excel_style_manager import setExcelStyling
 import datetime
 from models.exceptions import CustomException
 from src.create_repair_document import on_create
-def manage_data(new_data, flag):
+def manage_data(new_data, flag, fonts=None):
     data = read_excel()
     if flag == 0:
         #процесс удаления
@@ -28,7 +28,9 @@ def manage_data(new_data, flag):
                     '№ Заказа': new_data[0]["№ Заказа"][0],
                     'Изделие': [datum['Изделие'][0] for datum in new_data],
                     'Количество': [str(datum['Количество изделий'][0]) for datum in new_data],
-                    'Комментарий': [datum['Комментарий'][0] for datum in new_data]
+                    'Комментарий': [datum['Комментарий'][0] for datum in new_data],
+                    'MainFont': fonts['MainFont'],
+                    'NotMainFont': fonts['NotMainFont']
 
                 }
                 print(pdf_data)

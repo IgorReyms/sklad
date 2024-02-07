@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiformMnRQOR.ui'
+## Form generated from reading UI file 'uiformbyYtwV.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.6.1
 ##
@@ -49,6 +49,12 @@ class Ui_MainWindow(object):
 "border-color: black;\n"
 "border-width: 2px;\n"
 "}\n"
+"QFrame#frame_5{\n"
+"background-color:rgb(240, 240, 240);\n"
+"border-style: solid;\n"
+"border-color: black;\n"
+"border-width: 2px;\n"
+"}\n"
 "QStackedWidget {\n"
 "background-color:rgb(240, 240, 240);\n"
 "}\n"
@@ -64,10 +70,10 @@ class Ui_MainWindow(object):
 "	border-width: 1px;\n"
 "	border-radius: 7px;\n"
 "}\n"
-"QPushButton:pressed {\n"
+"QPushButton:pres"
+                        "sed {\n"
 "	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
-"                                      stop: 0 #dadbde, stop: 1 "
-                        "#f6f7fa);\n"
+"                                      stop: 0 #dadbde, stop: 1 #f6f7fa);\n"
 "	\n"
 "	font: 10pt \"Microsoft JhengHei\";\n"
 "	border-color:rgb(33, 214, 255);\n"
@@ -164,7 +170,7 @@ class Ui_MainWindow(object):
         self.label_3.setGeometry(QRect(20, 10, 251, 16))
         self.frame_3 = QFrame(self.settingsPage)
         self.frame_3.setObjectName(u"frame_3")
-        self.frame_3.setGeometry(QRect(20, 30, 251, 151))
+        self.frame_3.setGeometry(QRect(20, 30, 251, 131))
         self.frame_3.setFrameShape(QFrame.StyledPanel)
         self.frame_3.setFrameShadow(QFrame.Raised)
         self.label_4 = QLabel(self.frame_3)
@@ -182,35 +188,94 @@ class Ui_MainWindow(object):
         self.CheckBoxDebtButton.setObjectName(u"CheckBoxDebtButton")
         self.CheckBoxDebtButton.setGeometry(QRect(10, 100, 141, 20))
         self.CheckBoxDebtButton.setChecked(True)
-        self.SaveSettingsBtn = QPushButton(self.frame_3)
-        self.SaveSettingsBtn.setObjectName(u"SaveSettingsBtn")
-        self.SaveSettingsBtn.setGeometry(QRect(20, 120, 201, 24))
         self.label_5 = QLabel(self.settingsPage)
         self.label_5.setObjectName(u"label_5")
         self.label_5.setGeometry(QRect(20, 190, 251, 16))
         self.frame_4 = QFrame(self.settingsPage)
         self.frame_4.setObjectName(u"frame_4")
-        self.frame_4.setGeometry(QRect(20, 210, 331, 131))
+        self.frame_4.setGeometry(QRect(20, 210, 561, 381))
         self.frame_4.setFrameShape(QFrame.StyledPanel)
         self.frame_4.setFrameShadow(QFrame.Raised)
-        self.ExcelNameTextEdit = QPlainTextEdit(self.frame_4)
-        self.ExcelNameTextEdit.setObjectName(u"ExcelNameTextEdit")
-        self.ExcelNameTextEdit.setGeometry(QRect(160, 10, 151, 31))
         self.label_6 = QLabel(self.frame_4)
         self.label_6.setObjectName(u"label_6")
-        self.label_6.setGeometry(QRect(10, 20, 131, 16))
-        self.ExcelFieldTextEdit = QPlainTextEdit(self.frame_4)
-        self.ExcelFieldTextEdit.setObjectName(u"ExcelFieldTextEdit")
-        self.ExcelFieldTextEdit.setGeometry(QRect(160, 50, 151, 31))
-        self.label_7 = QLabel(self.frame_4)
+        self.label_6.setGeometry(QRect(10, 40, 161, 16))
+        self.SettingsRepairPrefixTextEdit = QPlainTextEdit(self.frame_4)
+        self.SettingsRepairPrefixTextEdit.setObjectName(u"SettingsRepairPrefixTextEdit")
+        self.SettingsRepairPrefixTextEdit.setGeometry(QRect(190, 30, 71, 31))
+        self.label_50 = QLabel(self.frame_4)
+        self.label_50.setObjectName(u"label_50")
+        self.label_50.setGeometry(QRect(270, 30, 16, 31))
+        self.SetingsRepairFirstNoTextEdit = QPlainTextEdit(self.frame_4)
+        self.SetingsRepairFirstNoTextEdit.setObjectName(u"SetingsRepairFirstNoTextEdit")
+        self.SetingsRepairFirstNoTextEdit.setGeometry(QRect(280, 30, 61, 31))
+        self.label_51 = QLabel(self.frame_4)
+        self.label_51.setObjectName(u"label_51")
+        self.label_51.setGeometry(QRect(190, 60, 71, 31))
+        self.label_52 = QLabel(self.frame_4)
+        self.label_52.setObjectName(u"label_52")
+        self.label_52.setGeometry(QRect(280, 60, 121, 31))
+        self.SetingsRepairFirstNoTextEdit_2 = QPlainTextEdit(self.frame_4)
+        self.SetingsRepairFirstNoTextEdit_2.setObjectName(u"SetingsRepairFirstNoTextEdit_2")
+        self.SetingsRepairFirstNoTextEdit_2.setGeometry(QRect(280, 100, 61, 31))
+        self.label_53 = QLabel(self.frame_4)
+        self.label_53.setObjectName(u"label_53")
+        self.label_53.setGeometry(QRect(280, 130, 101, 31))
+        self.SettingsRepairPrefixTextEdit_2 = QPlainTextEdit(self.frame_4)
+        self.SettingsRepairPrefixTextEdit_2.setObjectName(u"SettingsRepairPrefixTextEdit_2")
+        self.SettingsRepairPrefixTextEdit_2.setGeometry(QRect(190, 100, 71, 31))
+        self.label_54 = QLabel(self.frame_4)
+        self.label_54.setObjectName(u"label_54")
+        self.label_54.setGeometry(QRect(70, 100, 161, 31))
+        self.label_55 = QLabel(self.frame_4)
+        self.label_55.setObjectName(u"label_55")
+        self.label_55.setGeometry(QRect(190, 130, 71, 31))
+        self.label_56 = QLabel(self.frame_4)
+        self.label_56.setObjectName(u"label_56")
+        self.label_56.setGeometry(QRect(270, 100, 16, 31))
+        self.frame_5 = QFrame(self.frame_4)
+        self.frame_5.setObjectName(u"frame_5")
+        self.frame_5.setGeometry(QRect(0, 170, 561, 211))
+        self.frame_5.setFrameShape(QFrame.StyledPanel)
+        self.frame_5.setFrameShadow(QFrame.Raised)
+        self.FontSizeMainTextEdit = QPlainTextEdit(self.frame_5)
+        self.FontSizeMainTextEdit.setObjectName(u"FontSizeMainTextEdit")
+        self.FontSizeMainTextEdit.setGeometry(QRect(240, 20, 104, 31))
+        self.label_48 = QLabel(self.frame_5)
+        self.label_48.setObjectName(u"label_48")
+        self.label_48.setGeometry(QRect(10, 30, 231, 16))
+        self.label_49 = QLabel(self.frame_5)
+        self.label_49.setObjectName(u"label_49")
+        self.label_49.setGeometry(QRect(10, 60, 231, 16))
+        self.FontSizeNotMainTextEdit = QPlainTextEdit(self.frame_5)
+        self.FontSizeNotMainTextEdit.setObjectName(u"FontSizeNotMainTextEdit")
+        self.FontSizeNotMainTextEdit.setGeometry(QRect(240, 60, 104, 31))
+        self.label_47 = QLabel(self.frame_5)
+        self.label_47.setObjectName(u"label_47")
+        self.label_47.setGeometry(QRect(10, 10, 251, 16))
+        self.DeleteStringIntoStocksBtn = QPushButton(self.settingsPage)
+        self.DeleteStringIntoStocksBtn.setObjectName(u"DeleteStringIntoStocksBtn")
+        self.DeleteStringIntoStocksBtn.setGeometry(QRect(270, 670, 75, 24))
+        self.DeleteStringIntoStocksTable = QTableWidget(self.settingsPage)
+        self.DeleteStringIntoStocksTable.setObjectName(u"DeleteStringIntoStocksTable")
+        self.DeleteStringIntoStocksTable.setGeometry(QRect(20, 670, 241, 31))
+        self.DeleteStringIntoStocksTable.setShowGrid(False)
+        self.DeleteStringIntoStocksTable.setCornerButtonEnabled(False)
+        self.DeleteStringIntoStocksTable.setColumnCount(0)
+        self.DeleteStringIntoStocksTable.horizontalHeader().setVisible(False)
+        self.DeleteStringIntoStocksTable.horizontalHeader().setHighlightSections(True)
+        self.DeleteStringIntoStocksTable.horizontalHeader().setStretchLastSection(True)
+        self.CreateStringIntoStocksBtn = QPushButton(self.settingsPage)
+        self.CreateStringIntoStocksBtn.setObjectName(u"CreateStringIntoStocksBtn")
+        self.CreateStringIntoStocksBtn.setGeometry(QRect(270, 630, 75, 24))
+        self.label_7 = QLabel(self.settingsPage)
         self.label_7.setObjectName(u"label_7")
-        self.label_7.setGeometry(QRect(10, 50, 151, 31))
-        self.DropFieldBtn = QPushButton(self.frame_4)
-        self.DropFieldBtn.setObjectName(u"DropFieldBtn")
-        self.DropFieldBtn.setGeometry(QRect(90, 90, 101, 24))
-        self.InsertFieldBtn = QPushButton(self.frame_4)
-        self.InsertFieldBtn.setObjectName(u"InsertFieldBtn")
-        self.InsertFieldBtn.setGeometry(QRect(200, 90, 111, 24))
+        self.label_7.setGeometry(QRect(20, 610, 181, 16))
+        self.CreateStringIntoStocksTextEdit = QPlainTextEdit(self.settingsPage)
+        self.CreateStringIntoStocksTextEdit.setObjectName(u"CreateStringIntoStocksTextEdit")
+        self.CreateStringIntoStocksTextEdit.setGeometry(QRect(20, 630, 241, 31))
+        self.SaveSettingsBtn = QPushButton(self.settingsPage)
+        self.SaveSettingsBtn.setObjectName(u"SaveSettingsBtn")
+        self.SaveSettingsBtn.setGeometry(QRect(170, 180, 171, 24))
         self.stackedWidget.addWidget(self.settingsPage)
         self.repairPage = QWidget()
         self.repairPage.setObjectName(u"repairPage")
@@ -498,7 +563,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -519,13 +584,27 @@ class Ui_MainWindow(object):
         self.CheckBoxInstallBtn.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0430", None))
         self.CheckBoxRepairBtn.setText(QCoreApplication.translate("MainWindow", u"\u041e\u043f\u0435\u0440\u0430\u0446\u0438\u0438 \u043f\u043e \u0440\u0435\u043c\u043e\u043d\u0442\u0430\u043c", None))
         self.CheckBoxDebtButton.setText(QCoreApplication.translate("MainWindow", u"\u041e\u043f\u0435\u0440\u0430\u0446\u0438\u0438 \u043f\u043e \u0434\u043e\u043b\u0433\u0430\u043c", None))
-        self.SaveSettingsBtn.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c \u043d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438 \u043a\u043e\u043d\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u0438", None))
-        self.label_6.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 excel-\u0444\u0430\u0439\u043b\u0430", None))
-        self.label_7.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u0434\u043e\u0431\u0430\u0432\u043b\u044f\u0435\u043c\u043e\u0433\u043e\n"
-"\u0438\u043b\u0438 \u0443\u0434\u0430\u043b\u044f\u0435\u043c\u043e\u0433\u043e \u043f\u043e\u043b\u044f", None))
-        self.DropFieldBtn.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u043f\u043e\u043b\u0435", None))
-        self.InsertFieldBtn.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u043f\u043e\u043b\u0435", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u0430 \u0438\u043c\u0435\u043d\u0438 \u0440\u0435\u043c\u043e\u043d\u0442\u043e\u0432", None))
+        self.label_50.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_51.setText(QCoreApplication.translate("MainWindow", u"\u0422\u0435\u043a\u0441\u0442\u043e\u0432\u044b\u0439\n"
+"\u043f\u0440\u0435\u0444\u0438\u043a\u0441", None))
+        self.label_52.setText(QCoreApplication.translate("MainWindow", u"\u0410\u043a\u0442\u0443\u0430\u043b\u044c\u043d\u044b\u0439\n"
+"\u043d\u043e\u043c\u0435\u0440 \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0430", None))
+        self.label_53.setText(QCoreApplication.translate("MainWindow", u"\u0410\u043a\u0442\u0443\u0430\u043b\u044c\u043d\u044b\u0439\n"
+"\u043d\u043e\u043c\u0435\u0440 \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0430", None))
+        self.label_54.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u0430 \u0438\u043c\u0435\u043d\u0438\n"
+"\u0437\u0430\u0434\u043e\u043b\u0436\u0435\u043d\u043d\u043e\u0441\u0442\u0435\u0439", None))
+        self.label_55.setText(QCoreApplication.translate("MainWindow", u"\u0422\u0435\u043a\u0441\u0442\u043e\u0432\u044b\u0439\n"
+"\u043f\u0440\u0435\u0444\u0438\u043a\u0441", None))
+        self.label_56.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_48.setText(QCoreApplication.translate("MainWindow", u"\u0420\u0430\u0437\u043c\u0435\u0440 \u0448\u0440\u0438\u0444\u0442\u0430 \u043d\u0430\u0437\u0432\u0430\u043d\u0438\u0439 \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0430", None))
+        self.label_49.setText(QCoreApplication.translate("MainWindow", u"\u0420\u0430\u0437\u043c\u0435\u0440 \u0448\u0440\u0438\u0444\u0442\u0430 \u0441\u043e\u0434\u0435\u0440\u0436\u0438\u043c\u043e\u0433\u043e \u0434\u043e\u043a-\u0442\u0430", None))
+        self.label_47.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438 \u043f\u0435\u0447\u0430\u0442\u043d\u044b\u0445 \u0444\u043e\u0440\u043c", None))
+        self.DeleteStringIntoStocksBtn.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c", None))
+        self.CreateStringIntoStocksBtn.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c \u0441\u043e\u0434\u0435\u0440\u0436\u0438\u043c\u043e\u0435 stocks", None))
+        self.SaveSettingsBtn.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c \u043d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"\u2116 \u0420\u0435\u043c\u043e\u043d\u0442\u0430", None))
         ___qtablewidgetitem = self.TableRepairDocField.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u0438\u0437\u0434\u0435\u043b\u0438\u044f", None));

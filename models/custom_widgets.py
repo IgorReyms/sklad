@@ -1,5 +1,6 @@
 import os
 
+import pandas as pd
 from PySide6 import QtCore, QtGui, QtWidgets
 from PySide6.QtCore import Qt, QSortFilterProxyModel
 from PySide6.QtWidgets import QCompleter, QComboBox
@@ -38,14 +39,48 @@ class ExtendedComboBox(QComboBox):
             return df_items["Товар"].tolist()
         except Exception as e:
             raise CustomException(e.__str__())
+    def read_stocks_dataframe(self) -> pd.DataFrame:
+        try:
+            df_items = pandas.read_excel(str(os.getcwd().split('manager')[0] + "\\models\\stocks.xlsx"), header=1)
+            return df_items
+        except Exception as e:
+            raise CustomException(e.__str__())
+    def create_stock(self, stock):
+        try:
+            stocks = self.read_stocks_dataframe()
+            cols = stocks.columns
+            string = []
+            for col in cols:
+                if col == 'Товар':
+                    string.append(stock)
+                else:
+                    string.append('-')
 
+            stocks.loc[len(stocks.index)] = string
+
+            stocks.to_excel(str(os.getcwd().split('manager')[0] + "\\models\\stocks.xlsx"), startrow = 1, index = False)
+        except Exception as e:
+            raise CustomException(e.__str__())
+
+    def delete_stock(self, stock):
+        try:
+            stocks = self.read_stocks_dataframe()
+            if len(stocks.loc[stocks["Товар"] == stock]) == 0:
+                raise CustomException("Товар не найден!")
+            else:
+                stocks.drop(stocks.index[stocks['Товар'] == stock], inplace=True)
+
+            stocks.to_excel(str(os.getcwd().split('manager')[0] + "\\models\\stocks.xlsx"), startrow = 1, index = False)
+        except Exception as e:
+            raise CustomException(e.__str__())
     def get_data(self):
         return self.itemText(self.currentIndex())
     def on_completer_activated(self, text):
         if text:
+
             index = self.findText(text)
             self.setCurrentIndex(index)
-            self.activated[str].emit(self.itemText(index))
+            self.textActivated[str].emit(self.itemText(index))
 
 
     # on model change, update the models of the filter and completer as well

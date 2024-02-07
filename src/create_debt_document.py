@@ -14,7 +14,7 @@ def create_pdf(data)->None:
     pdf.image(path + '\\' + '1.jpg', x=pdf.w / 2 + 10, y=10, w=50, h=12)
 
     pdf.add_font('gothampro', '', path + '\\' + 'GothamPro.ttf', uni=True)
-    pdf.set_font('gothampro', '', 12)
+    pdf.set_font('gothampro', '', data["MainFont"])
     pdf.line(pdf.w / 2, pdf.h / 10, pdf.w / 2, pdf.h - pdf.h / 10)
     # pdf.set_font('times','',12)
     pdf.cell(pdf.w * 1 / 4, pdf.font_size, txt='')
@@ -35,7 +35,7 @@ def create_pdf(data)->None:
     pdf.ln(pdf.font_size * 2)
 
     pdf.add_font('gothampro_bold', '', path + '\\' + 'GothamPro-Bold.ttf', uni=True)
-    pdf.set_font('gothampro_bold', '', 16)
+    pdf.set_font('gothampro_bold', '', data["MainFont"])
     # pdf.set_font('times', '', 16)
     pdf.cell(pdf.w / 2, pdf.font_size, txt=str(data["Клиент"]), align='C')
     pdf.cell(pdf.w / 2, pdf.font_size, txt=str(data["Клиент"]), align='C')
@@ -61,7 +61,7 @@ def create_pdf(data)->None:
     pdf.ln(cell_height)
 
     pdf.add_font('gothampro', '', path + '\\' + 'GothamPro.ttf', uni=True)
-    pdf.set_font('gothampro', '', 8)
+    pdf.set_font('gothampro', '', data["NotMainFont"])
     # pdf.set_font('times', '', 8)
 
     name = data['Изделие']

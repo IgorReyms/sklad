@@ -4,7 +4,7 @@ from manager.excel_style_manager import setExcelStyling
 import datetime
 from models.exceptions import CustomException
 from src.create_debt_document import on_create
-def manage_debt_data(new_data, flag):
+def manage_debt_data(new_data, flag, fonts=None):
     data = read_excel()
 
     if flag == 1:
@@ -137,7 +137,9 @@ def manage_debt_data(new_data, flag):
             'Клиент': df_copy["Клиент"][0],
             '№ Заказа': df_copy['№ Задолженности'][0],
             'Изделие': df_copy["Изделие"],
-            'Количество': df_copy['Исходный размер задолженности']
+            'Количество': df_copy['Исходный размер задолженности'],
+            'MainFont': fonts['MainFont'],
+            'NotMainFont': fonts['NotMainFont'],
         }
         on_create(pdf_data)
 def read_excel() -> pd.DataFrame:

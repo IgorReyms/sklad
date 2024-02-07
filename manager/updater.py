@@ -43,6 +43,7 @@ def update_debt_page(window, flag):
 
         window.ui.DebtItemTable.verticalHeader().setVisible(False)
         window.ui.DebtNoTextEdit.setPlainText(config.config["DebtInfo"]["LastDebtNo"])
+        update_settings_page(window)
     if flag == 'change_debt':
         window.ui.DebtOutItemTable.setRowCount(0)
         window.ui.DebtOutItemTable.insertRow(0)
@@ -76,6 +77,7 @@ def update_repair_page(window, flag):
         window.ui.RepairNoInTextEdit.setPlainText(config.config["RepairInfo"]["LastRepairNo"])
         window.ui.TableRepairDocField.setRowCount(0)
 
+        update_settings_page(window)
     elif flag == 'create_shipment':
         last_no = config.config["RepairInfo"]["LastShipmentNo"]
         new_no = create_new_repair_shipment_no(last_no)
@@ -98,11 +100,26 @@ def update_repair_page(window, flag):
 
         window.ui.RepairNoOutTextEdit.clear()
     elif flag == 'repair_status_info':
+
         count_list = update_repair_info()
         window.ui.RepairQtyUnShipInfoTextEdit.setPlainText(str(count_list[0]))
         window.ui.RepairQtyShipInfoTextEdit.setPlainText(str(count_list[1]))
         window.ui.RepairQtyInfoTextEdit.setPlainText(str(count_list[2]))
         window.ui.ShipmentNoTextEdit.setPlainText(config.config["RepairInfo"]["LastShipmentNo"])
+
+
+def update_settings_page(window):
+    config = ConfigParser()
+    window.ui.SetingsRepairFirstNoTextEdit.setPlainText(config.config["RepairInfo"]["LastRepairNo"].split('-')[1])
+    window.ui.SettingsRepairPrefixTextEdit.setPlainText(config.config["RepairInfo"]["LastRepairNo"].split('-')[0])
+    window.ui.SetingsRepairFirstNoTextEdit_2.setPlainText(config.config["DebtInfo"]["LastDebtNo"].split('-')[1])
+    window.ui.SettingsRepairPrefixTextEdit_2.setPlainText(config.config["DebtInfo"]["LastDebtNo"].split('-')[0])
+    window.ui.RepairNoInTextEdit.setPlainText(config.config["RepairInfo"]["LastRepairNo"])
+    window.ui.DebtNoTextEdit.setPlainText(config.config["DebtInfo"]["LastDebtNo"])
+    window.ui.FontSizeMainTextEdit.setPlainText(str(config.config["ReportInfo"]["MainFontSize"]))
+    window.ui.FontSizeNotMainTextEdit.setPlainText(str(config.config["ReportInfo"]["NotMainFontSize"]))
+    window.update()
+
 def create_new_repair_shipment_no(last_no) -> str:
     last_no = last_no.split("-")
     new_no = last_no[0] + '-' + str(int(last_no[1]) + 1)

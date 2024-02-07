@@ -5,9 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce1aed9f-3be6-4ff8-ab77-58e388c46130" name="Changes" comment="0">
+      <change afterPath="$PROJECT_DIR$/GothamPro-Bold.cw127.pkl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GothamPro-Bold.pkl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GothamPro.cw127.pkl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GothamPro.pkl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/settings_process.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/main/Analysis-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/Analysis-00.toc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/main/EXE-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/EXE-00.toc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/main/PKG-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/PKG-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/main/PYZ-00.pyz" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/PYZ-00.pyz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/main/base_library.zip" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/base_library.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/main/main.pkg" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/main.pkg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/main/warn-main.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/warn-main.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/main/xref-main.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/xref-main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/main.exe" beforeDir="false" afterPath="$PROJECT_DIR$/dist/main.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manager/app_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/manager/app_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manager/updater.py" beforeDir="false" afterPath="$PROJECT_DIR$/manager/updater.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/custom_widgets.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/custom_widgets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/stocks.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/models/stocks.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/create_debt_document.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/create_debt_document.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/create_repair_document.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/create_repair_document.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/debt_process.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/debt_process.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repair_process.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/repair_process.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/form.py" beforeDir="false" afterPath="$PROJECT_DIR$/template/form.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uiform.ui" beforeDir="false" afterPath="$PROJECT_DIR$/uiform.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -256,7 +279,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707171599594</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="0">
+      <option name="closed" value="true" />
+      <created>1707205279692</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1707205279692</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -322,12 +353,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/manager/updater.py</url>
-          <line>54</line>
+          <line>55</line>
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/debt_process.py</url>
-          <line>141</line>
+          <line>143</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -336,34 +367,24 @@
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/create_debt_document.py</url>
-          <line>82</line>
-          <option name="timeStamp" value="36" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/manager/excel_style_manager.py</url>
           <line>15</line>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/repair_process.py</url>
-          <line>33</line>
+          <line>35</line>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/create_repair_document.py</url>
-          <line>8</line>
-          <option name="timeStamp" value="47" />
+          <url>file://$PROJECT_DIR$/models/custom_widgets.py</url>
+          <line>65</line>
+          <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/create_repair_document.py</url>
-          <line>26</line>
-          <option name="timeStamp" value="48" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/create_repair_document.py</url>
-          <line>32</line>
-          <option name="timeStamp" value="49" />
+          <url>file://$PROJECT_DIR$/models/custom_widgets.py</url>
+          <line>44</line>
+          <option name="timeStamp" value="52" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
