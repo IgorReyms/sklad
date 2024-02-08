@@ -99,7 +99,12 @@ def manage_debt_data(new_data, flag, fonts=None):
             df_copy = data.copy()
             for key in filters:
                 if filters[key] != '':
-                    df_copy = df_copy.loc[(df_copy[key] == filters[key]) & (df_copy['Остаток по долгу'] != 0)]
+                    if key == 'Клиент':
+                        df_copy = df_copy[df_copy['Клиент'].str.contains(new_data['Клиент'][0])]
+                        df_copy = df_copy.loc[df_copy['Остаток по долгу'] != 0]
+                    else:
+                        df_copy = df_copy.loc[(df_copy[key] == filters[key]) & (df_copy['Остаток по долгу'] != 0)]
+
 
             df_copy = df_copy[['№ Задолженности','Клиент','Остаток по долгу','Изделие']]
 

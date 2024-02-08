@@ -30,8 +30,8 @@ class MainForm(QtWidgets.QMainWindow):
 
         # логика кнопок страницы Настройки-->видимость кнопок меню
         self.ui.CheckBoxRepairBtn.setChecked(config.config["Settings"]["repairBtnVisible"])
-        self.ui.CheckBoxInstallBtn.setChecked(config.config["Settings"]["debtBtnVisible"])
-        self.ui.CheckBoxDebtButton.setChecked(config.config["Settings"]["installationBtnVisible"])
+        self.ui.CheckBoxInstallBtn.setChecked(config.config["Settings"]["installationBtnVisible"])
+        self.ui.CheckBoxDebtButton.setChecked(config.config["Settings"]["debtBtnVisible"])
         self.settingsVisibility()
         self.ui.CheckBoxRepairBtn.stateChanged.connect(self.settingsVisibility)
         self.ui.CheckBoxInstallBtn.stateChanged.connect(self.settingsVisibility)
@@ -68,7 +68,10 @@ class MainForm(QtWidgets.QMainWindow):
         self.ui.RepairFindItem.insertColumn(0)
         self.ui.RepairFindItem.verticalHeader().setVisible(False)
         self.ui.RepairFindItem.setCellWidget(0, 0, ExtendedComboBox(self))
-
+        self.ui.FinderRepairItemTable.insertRow(0)
+        self.ui.FinderRepairItemTable.insertColumn(0)
+        self.ui.FinderRepairItemTable.verticalHeader().setVisible(False)
+        self.ui.FinderRepairItemTable.setCellWidget(0, 0, ExtendedComboBox(self))
         #создать ремонт
         self.ui.CreateRepairBtn.clicked.connect(self.create_repair)
 
@@ -177,7 +180,7 @@ class MainForm(QtWidgets.QMainWindow):
 
     def find_debt(self):
         try:
-            print(self.ui.DebtInfoItemTable.cellWidget(0, 0).get_data())
+
             debt_info = {
                 '№ Задолженности': [self.ui.DebtFindByDebtNoTextEdit.toPlainText()],
                 'Дата создания': [''],
@@ -260,9 +263,9 @@ class MainForm(QtWidgets.QMainWindow):
                 config.config["Settings"]["debtBtnVisible"] = False
         elif self.ui.CheckBoxDebtButton.checkState().value == 2:
                 config.config["Settings"]["debtBtnVisible"] = True
-        if self.ui.CheckBoxDebtButton.checkState().value == 0:
+        if self.ui.CheckBoxInstallBtn.checkState().value == 0:
                 config.config["Settings"]["installationBtnVisible"] = False
-        elif self.ui.CheckBoxDebtButton.checkState().value == 2:
+        elif self.ui.CheckBoxInstallBtn.checkState().value == 2:
                 config.config["Settings"]["installationBtnVisible"] = True
 
 
@@ -285,7 +288,7 @@ class MainForm(QtWidgets.QMainWindow):
         try:
             config.save_config()
             QtWidgets.QMessageBox.information(self, 'Информация', f'Настройки файла конфигурации сохранены! \n{message_values[0]}-->{message_values[2]}\n{message_values[1]}-->{message_values[3]}\nГлавный '
-                                                                  f'шрифт {message_values[4]}-->{message_values[6]} \nМладший шрифт{message_values[5]}-->{message_values[7]}')
+                                                                  f'шрифт {message_values[4]}-->{message_values[6]} \nМладший шрифт {message_values[5]}-->{message_values[7]}')
             update_settings_page(self)
 
         except Exception as e:
@@ -417,28 +420,49 @@ class MainForm(QtWidgets.QMainWindow):
 
     def repair_finder_information(self):
         try:
-            repair_info = manage_data(self.ui.FinderRepairNoTextEdit.toPlainText(), 4)
-            QtWidgets.QMessageBox.information(self, 'Информация',
-                                              f"Ремонт {self.ui.FinderRepairNoTextEdit.toPlainText()} найден!")
+            # if self.ui.FinderRepairNoTextEdit.toPlainText() != '' and self.ui.FinderRepairByClientTextEdit.toPlainText() != '':
+            #     QtWidgets.QMessageBox.warning(self, 'Предупреждение',
+            #                                    f'Заполнены оба поля поиска! Поиск осуществлен по Номеру Ремонта!')
+            # if self.ui.FinderRepairNoTextEdit.toPlainText() != '':
+            #     repair_info = manage_data(self.ui.FinderRepairNoTextEdit.toPlainText(), 4)
+            #     QtWidgets.QMessageBox.information(self, 'Информация',
+            #                                       f"Ремонт {self.ui.FinderRepairNoTextEdit.toPlainText()} найден!")
+            #
+            #     self.ui.FinderRepairClientTextEdit.setPlainText(repair_info['Клиент'])
+            #     self.ui.FinderRepairStatusTextEdit.setPlainText(repair_info['Статус'])
+            #     self.ui.FinderRepairShipNoTextEdit.setPlainText(repair_info['№ Отправления'])
+            #     self.ui.FinderRepairShipmentDateTextEdit.setPlainText(str(repair_info['Дата отправления']))
+            #     self.ui.FinderRepairOutTextEdit.setPlainText(str(repair_info['Дата выдачи']))
+            #
+            #
+            #     string = ''
+            #     name_len = len(repair_info['Сданные изделия']['Название'][0])
+            #     for i in range(len(repair_info['Сданные изделия']['Название'])):
+            #         string += repair_info['Сданные изделия']['Название'][i] + '-->' + str(repair_info['Сданные изделия']['Количество'][i]).ljust(5) + '\n'
+            #         if name_len < len(repair_info['Сданные изделия']['Название'][i]):
+            #             name_len = len(repair_info['Сданные изделия']['Название'][i])
+            #
+            #     string_head = 'Изделие'  + ' ' * (name_len-7)+ 'Количество\n'.ljust(5) + string
+            #     self.ui.FinderRepairItemInfoTextEdit.setPlainText(string_head)
+            #     self.ui.FinderRepairNoTextEdit.clear()
+            #
+            # if self.ui.FinderRepairByClientTextEdit.toPlainText() != '':
+            #     repair_info = manage_data(self.ui.FinderRepairByClientTextEdit.toPlainText(), 5)
+            #     QtWidgets.QMessageBox.information(self, 'Информация',
+            #                                       f"По названию организации {self.ui.FinderRepairByClientTextEdit.toPlainText()} ремонты найдены!")
+            #     self.ui.FinderRepairByClientTextEdit.clear()
+            #     self.ui.FinderRepairAllInfoTextEdit.setPlainText(repair_info)
+            filters = {
+                '№ Заказа': self.ui.FinderRepairNoTextEdit.toPlainText(),
+                'Клиент': self.ui.FinderRepairByClientTextEdit.toPlainText(),
+                'Изделие': self.ui.FinderRepairItemTable.cellWidget(0, 0).get_data()
+            }
+            manage_data(filters, 4,fonts=None, window=self)
 
-            self.ui.FinderRepairClientTextEdit.setPlainText(repair_info['Клиент'])
-            self.ui.FinderRepairStatusTextEdit.setPlainText(repair_info['Статус'])
-            self.ui.FinderRepairShipNoTextEdit.setPlainText(repair_info['№ Отправления'])
-            self.ui.FinderRepairShipmentDateTextEdit.setPlainText(str(repair_info['Дата отправления']))
-            self.ui.FinderRepairOutTextEdit.setPlainText(str(repair_info['Дата выдачи']))
-
-
-            string = ''
-            name_len = len(repair_info['Сданные изделия']['Название'][0])
-            for i in range(len(repair_info['Сданные изделия']['Название'])):
-                string += repair_info['Сданные изделия']['Название'][i] + '-->' + str(repair_info['Сданные изделия']['Количество'][i]).ljust(5) + '\n'
-                if name_len < len(repair_info['Сданные изделия']['Название'][i]):
-                    name_len = len(repair_info['Сданные изделия']['Название'][i])
-            print(name_len)
-            string_head = 'Изделие'  + ' ' * (name_len-7)+ 'Количество\n'.ljust(5) + string
-            self.ui.FinderRepairItemInfoTextEdit.setPlainText(string_head)
-
-
+            self.ui.FinderRepairItemTable.setRowCount(0)
+            self.ui.FinderRepairItemTable.insertRow(0)
+            self.ui.FinderRepairItemTable.verticalHeader().setVisible(False)
+            self.ui.FinderRepairItemTable.setCellWidget(0, 0, ExtendedComboBox(self))
         except Exception as e:
             QtWidgets.QMessageBox.critical(self, 'Ошибка',
                                            f'Информация по ремонту не собрана. Причина: {e.__str__()}')

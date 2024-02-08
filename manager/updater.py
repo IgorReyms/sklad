@@ -108,6 +108,7 @@ def update_repair_page(window, flag):
         window.ui.ShipmentNoTextEdit.setPlainText(config.config["RepairInfo"]["LastShipmentNo"])
 
 
+
 def update_settings_page(window):
     config = ConfigParser()
     window.ui.SetingsRepairFirstNoTextEdit.setPlainText(config.config["RepairInfo"]["LastRepairNo"].split('-')[1])
