@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiformxeqYTX.ui'
+## Form generated from reading UI file 'uiformoPhZJJ.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.6.1
 ##
@@ -15,11 +15,11 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QFrame, QHBoxLayout,
-    QHeaderView, QLabel, QMainWindow, QPlainTextEdit,
-    QPushButton, QSizePolicy, QSpacerItem, QStackedWidget,
-    QTableWidget, QTableWidgetItem, QTextEdit, QVBoxLayout,
-    QWidget)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QDateEdit, QFrame,
+    QHBoxLayout, QHeaderView, QLabel, QMainWindow,
+    QPlainTextEdit, QPushButton, QSizePolicy, QSpacerItem,
+    QStackedWidget, QTableWidget, QTableWidgetItem, QTextEdit,
+    QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -125,6 +125,13 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout.addWidget(self.debtMenuButton)
 
+        self.shdMenuButton = QPushButton(self.frame)
+        self.shdMenuButton.setObjectName(u"shdMenuButton")
+        sizePolicy1.setHeightForWidth(self.shdMenuButton.sizePolicy().hasHeightForWidth())
+        self.shdMenuButton.setSizePolicy(sizePolicy1)
+
+        self.horizontalLayout.addWidget(self.shdMenuButton)
+
         self.horizontalSpacer = QSpacerItem(479, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout.addItem(self.horizontalSpacer)
@@ -133,7 +140,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setStretch(1, 1)
         self.horizontalLayout.setStretch(2, 2)
         self.horizontalLayout.setStretch(3, 2)
-        self.horizontalLayout.setStretch(4, 6)
+        self.horizontalLayout.setStretch(5, 6)
 
         self.verticalLayout.addWidget(self.frame)
 
@@ -170,7 +177,7 @@ class Ui_MainWindow(object):
         self.label_3.setGeometry(QRect(20, 10, 251, 16))
         self.frame_3 = QFrame(self.settingsPage)
         self.frame_3.setObjectName(u"frame_3")
-        self.frame_3.setGeometry(QRect(20, 30, 251, 131))
+        self.frame_3.setGeometry(QRect(20, 30, 251, 171))
         self.frame_3.setFrameShape(QFrame.StyledPanel)
         self.frame_3.setFrameShadow(QFrame.Raised)
         self.label_4 = QLabel(self.frame_3)
@@ -188,12 +195,16 @@ class Ui_MainWindow(object):
         self.CheckBoxDebtButton.setObjectName(u"CheckBoxDebtButton")
         self.CheckBoxDebtButton.setGeometry(QRect(10, 100, 141, 20))
         self.CheckBoxDebtButton.setChecked(True)
+        self.CheckBoxShdButton = QCheckBox(self.frame_3)
+        self.CheckBoxShdButton.setObjectName(u"CheckBoxShdButton")
+        self.CheckBoxShdButton.setGeometry(QRect(10, 130, 191, 31))
+        self.CheckBoxShdButton.setChecked(True)
         self.label_5 = QLabel(self.settingsPage)
         self.label_5.setObjectName(u"label_5")
-        self.label_5.setGeometry(QRect(20, 190, 251, 16))
+        self.label_5.setGeometry(QRect(20, 240, 251, 16))
         self.frame_4 = QFrame(self.settingsPage)
         self.frame_4.setObjectName(u"frame_4")
-        self.frame_4.setGeometry(QRect(20, 210, 561, 381))
+        self.frame_4.setGeometry(QRect(20, 260, 561, 381))
         self.frame_4.setFrameShape(QFrame.StyledPanel)
         self.frame_4.setFrameShadow(QFrame.Raised)
         self.label_6 = QLabel(self.frame_4)
@@ -254,10 +265,10 @@ class Ui_MainWindow(object):
         self.label_47.setGeometry(QRect(10, 10, 251, 16))
         self.DeleteStringIntoStocksBtn = QPushButton(self.settingsPage)
         self.DeleteStringIntoStocksBtn.setObjectName(u"DeleteStringIntoStocksBtn")
-        self.DeleteStringIntoStocksBtn.setGeometry(QRect(270, 670, 75, 24))
+        self.DeleteStringIntoStocksBtn.setGeometry(QRect(270, 720, 75, 24))
         self.DeleteStringIntoStocksTable = QTableWidget(self.settingsPage)
         self.DeleteStringIntoStocksTable.setObjectName(u"DeleteStringIntoStocksTable")
-        self.DeleteStringIntoStocksTable.setGeometry(QRect(20, 670, 241, 31))
+        self.DeleteStringIntoStocksTable.setGeometry(QRect(20, 720, 241, 31))
         self.DeleteStringIntoStocksTable.setShowGrid(False)
         self.DeleteStringIntoStocksTable.setCornerButtonEnabled(False)
         self.DeleteStringIntoStocksTable.setColumnCount(0)
@@ -266,16 +277,16 @@ class Ui_MainWindow(object):
         self.DeleteStringIntoStocksTable.horizontalHeader().setStretchLastSection(True)
         self.CreateStringIntoStocksBtn = QPushButton(self.settingsPage)
         self.CreateStringIntoStocksBtn.setObjectName(u"CreateStringIntoStocksBtn")
-        self.CreateStringIntoStocksBtn.setGeometry(QRect(270, 630, 75, 24))
+        self.CreateStringIntoStocksBtn.setGeometry(QRect(270, 680, 75, 24))
         self.label_7 = QLabel(self.settingsPage)
         self.label_7.setObjectName(u"label_7")
-        self.label_7.setGeometry(QRect(20, 610, 181, 16))
+        self.label_7.setGeometry(QRect(20, 660, 181, 16))
         self.CreateStringIntoStocksTextEdit = QPlainTextEdit(self.settingsPage)
         self.CreateStringIntoStocksTextEdit.setObjectName(u"CreateStringIntoStocksTextEdit")
-        self.CreateStringIntoStocksTextEdit.setGeometry(QRect(20, 630, 241, 31))
+        self.CreateStringIntoStocksTextEdit.setGeometry(QRect(20, 680, 241, 31))
         self.SaveSettingsBtn = QPushButton(self.settingsPage)
         self.SaveSettingsBtn.setObjectName(u"SaveSettingsBtn")
-        self.SaveSettingsBtn.setGeometry(QRect(170, 180, 171, 24))
+        self.SaveSettingsBtn.setGeometry(QRect(170, 230, 171, 24))
         self.stackedWidget.addWidget(self.settingsPage)
         self.repairPage = QWidget()
         self.repairPage.setObjectName(u"repairPage")
@@ -532,6 +543,88 @@ class Ui_MainWindow(object):
         self.DebtReportPrint.setObjectName(u"DebtReportPrint")
         self.DebtReportPrint.setGeometry(QRect(800, 60, 101, 24))
         self.stackedWidget.addWidget(self.debtPage)
+        self.shdPage = QWidget()
+        self.shdPage.setObjectName(u"shdPage")
+        self.label_42 = QLabel(self.shdPage)
+        self.label_42.setObjectName(u"label_42")
+        self.label_42.setGeometry(QRect(320, 0, 331, 31))
+        self.label_43 = QLabel(self.shdPage)
+        self.label_43.setObjectName(u"label_43")
+        self.label_43.setGeometry(QRect(20, 140, 71, 16))
+        self.label_44 = QLabel(self.shdPage)
+        self.label_44.setObjectName(u"label_44")
+        self.label_44.setGeometry(QRect(20, 180, 71, 16))
+        self.label_45 = QLabel(self.shdPage)
+        self.label_45.setObjectName(u"label_45")
+        self.label_45.setGeometry(QRect(20, 100, 49, 16))
+        self.label_46 = QLabel(self.shdPage)
+        self.label_46.setObjectName(u"label_46")
+        self.label_46.setGeometry(QRect(20, 50, 151, 31))
+        self.shdCreateShipmentCompanyTextEdit = QPlainTextEdit(self.shdPage)
+        self.shdCreateShipmentCompanyTextEdit.setObjectName(u"shdCreateShipmentCompanyTextEdit")
+        self.shdCreateShipmentCompanyTextEdit.setGeometry(QRect(110, 50, 191, 31))
+        self.shdCreateClientTextEdit = QPlainTextEdit(self.shdPage)
+        self.shdCreateClientTextEdit.setObjectName(u"shdCreateClientTextEdit")
+        self.shdCreateClientTextEdit.setGeometry(QRect(110, 90, 191, 31))
+        self.shdCreateTrekNoTextEdit = QPlainTextEdit(self.shdPage)
+        self.shdCreateTrekNoTextEdit.setObjectName(u"shdCreateTrekNoTextEdit")
+        self.shdCreateTrekNoTextEdit.setGeometry(QRect(110, 130, 191, 31))
+        self.label_57 = QLabel(self.shdPage)
+        self.label_57.setObjectName(u"label_57")
+        self.label_57.setGeometry(QRect(280, 250, 331, 31))
+        self.shdFindClientTextEdit = QPlainTextEdit(self.shdPage)
+        self.shdFindClientTextEdit.setObjectName(u"shdFindClientTextEdit")
+        self.shdFindClientTextEdit.setGeometry(QRect(440, 300, 191, 31))
+        self.label_59 = QLabel(self.shdPage)
+        self.label_59.setObjectName(u"label_59")
+        self.label_59.setGeometry(QRect(40, 300, 151, 31))
+        self.label_60 = QLabel(self.shdPage)
+        self.label_60.setObjectName(u"label_60")
+        self.label_60.setGeometry(QRect(390, 310, 49, 16))
+        self.shdFindTrekNoTextEdit = QPlainTextEdit(self.shdPage)
+        self.shdFindTrekNoTextEdit.setObjectName(u"shdFindTrekNoTextEdit")
+        self.shdFindTrekNoTextEdit.setGeometry(QRect(130, 340, 191, 31))
+        self.label_61 = QLabel(self.shdPage)
+        self.label_61.setObjectName(u"label_61")
+        self.label_61.setGeometry(QRect(40, 350, 71, 16))
+        self.shdFindShipmentCompanyTextEdit = QPlainTextEdit(self.shdPage)
+        self.shdFindShipmentCompanyTextEdit.setObjectName(u"shdFindShipmentCompanyTextEdit")
+        self.shdFindShipmentCompanyTextEdit.setGeometry(QRect(130, 300, 191, 31))
+        self.label_63 = QLabel(self.shdPage)
+        self.label_63.setObjectName(u"label_63")
+        self.label_63.setGeometry(QRect(450, 340, 71, 16))
+        self.label_64 = QLabel(self.shdPage)
+        self.label_64.setObjectName(u"label_64")
+        self.label_64.setGeometry(QRect(450, 370, 71, 16))
+        self.shdFindDate0TextEdit = QDateEdit(self.shdPage)
+        self.shdFindDate0TextEdit.setObjectName(u"shdFindDate0TextEdit")
+        self.shdFindDate0TextEdit.setGeometry(QRect(480, 340, 151, 22))
+        self.shdFindDate0TextEdit.setCalendarPopup(True)
+        self.shdFindDate0TextEdit.setDate(QDate(2024, 1, 2))
+        self.shdFindDate1TextEdit = QDateEdit(self.shdPage)
+        self.shdFindDate1TextEdit.setObjectName(u"shdFindDate1TextEdit")
+        self.shdFindDate1TextEdit.setGeometry(QRect(480, 370, 151, 22))
+        self.shdFindDate1TextEdit.setCalendarPopup(True)
+        self.shdFindDate1TextEdit.setDate(QDate(2024, 1, 2))
+        self.shdCreateBtn = QPushButton(self.shdPage)
+        self.shdCreateBtn.setObjectName(u"shdCreateBtn")
+        self.shdCreateBtn.setGeometry(QRect(204, 210, 91, 24))
+        self.shdFindDateBtn = QPushButton(self.shdPage)
+        self.shdFindDateBtn.setObjectName(u"shdFindDateBtn")
+        self.shdFindDateBtn.setGeometry(QRect(670, 300, 111, 24))
+        self.shdCreateDateTextEdit = QDateEdit(self.shdPage)
+        self.shdCreateDateTextEdit.setObjectName(u"shdCreateDateTextEdit")
+        self.shdCreateDateTextEdit.setGeometry(QRect(110, 180, 181, 22))
+        self.shdCreateDateTextEdit.setCalendarPopup(True)
+        self.shdCreateDateTextEdit.setDate(QDate(2024, 1, 2))
+        self.shdDateCheckBox = QCheckBox(self.shdPage)
+        self.shdDateCheckBox.setObjectName(u"shdDateCheckBox")
+        self.shdDateCheckBox.setGeometry(QRect(380, 340, 76, 20))
+        self.shdDateCheckBox.setChecked(False)
+        self.ShdInfoTable = QTableWidget(self.shdPage)
+        self.ShdInfoTable.setObjectName(u"ShdInfoTable")
+        self.ShdInfoTable.setGeometry(QRect(0, 410, 971, 371))
+        self.stackedWidget.addWidget(self.shdPage)
 
         self.horizontalLayout_2.addWidget(self.stackedWidget)
 
@@ -544,7 +637,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(4)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -556,6 +649,8 @@ class Ui_MainWindow(object):
         self.settingsMenuButton.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438", None))
         self.repairMenuButton.setText(QCoreApplication.translate("MainWindow", u"\u041e\u043f\u0435\u0440\u0430\u0446\u0438\u0438 \u043f\u043e \u0440\u0435\u043c\u043e\u043d\u0442\u0430\u043c", None))
         self.debtMenuButton.setText(QCoreApplication.translate("MainWindow", u"\u041e\u043f\u0435\u0440\u0430\u0446\u0438\u0438 \u043f\u043e \u0434\u043e\u043b\u0433\u0430\u043c", None))
+        self.shdMenuButton.setText(QCoreApplication.translate("MainWindow", u"\u041e\u043f\u0435\u0440\u0430\u0446\u0438\u0438 \u043f\u043e\n"
+"\u0442\u0440\u0430\u043d\u0441\u043f\u043e\u0440\u0442\u043d\u044b\u043c \u043d\u0430\u043a\u043b\u0430\u0434\u043d\u044b\u043c", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0435\u0440\u0432\u0438\u0441 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0438 \u043c\u043e\u0434\u0443\u043b\u0435\u0439 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u044b", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"\u041c\u0435\u0441\u0442\u043e \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0438 \u043d\u0430 \u0434\u0438\u0441\u043a\u0435", None))
         self.OpenFileBrowserBtn.setText(QCoreApplication.translate("MainWindow", u"\u041e\u0442\u043a\u0440\u044b\u0442\u044c \u043f\u0430\u043f\u043a\u0443", None))
@@ -565,6 +660,8 @@ class Ui_MainWindow(object):
         self.CheckBoxInstallBtn.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0430", None))
         self.CheckBoxRepairBtn.setText(QCoreApplication.translate("MainWindow", u"\u041e\u043f\u0435\u0440\u0430\u0446\u0438\u0438 \u043f\u043e \u0440\u0435\u043c\u043e\u043d\u0442\u0430\u043c", None))
         self.CheckBoxDebtButton.setText(QCoreApplication.translate("MainWindow", u"\u041e\u043f\u0435\u0440\u0430\u0446\u0438\u0438 \u043f\u043e \u0434\u043e\u043b\u0433\u0430\u043c", None))
+        self.CheckBoxShdButton.setText(QCoreApplication.translate("MainWindow", u"\u041e\u043f\u0435\u0440\u0430\u0446\u0438\u0438 \u043f\u043e \u0442\u0440\u0430\u043d\u0441\u043f\u043e\u0440\u0442\u043d\u044b\u043c \n"
+" \u043d\u0430\u043a\u043b\u0430\u0434\u043d\u044b\u043c", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438 \u043a\u043e\u043d\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u0438", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u0430 \u0438\u043c\u0435\u043d\u0438 \u0440\u0435\u043c\u043e\u043d\u0442\u043e\u0432", None))
         self.label_50.setText(QCoreApplication.translate("MainWindow", u"-", None))
@@ -637,5 +734,24 @@ class Ui_MainWindow(object):
         self.label_39.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e \u043d\u043e\u043c\u0435\u0440\u0443 \u0437\u0430\u0434\u043e\u043b\u0436\u0435\u043d\u043d\u043e\u0441\u0442\u0438", None))
         self.label_25.setText(QCoreApplication.translate("MainWindow", u"\u2116 \u0437\u0430\u0434\u043e\u043b\u0436\u0435\u043d\u043d\u043e\u0441\u0442\u0438", None))
         self.DebtReportPrint.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0435\u0447\u0430\u0442\u044c..", None))
+        self.label_42.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0437\u0434\u0430\u043d\u0438\u0435 \u0441\u0442\u0440\u043e\u043a \u0442\u0440\u0430\u043d\u0441\u043f\u043e\u0440\u0442\u043d\u044b\u0445 \u043d\u0430\u043a\u043b\u0430\u0434\u043d\u044b\u0445", None))
+        self.label_43.setText(QCoreApplication.translate("MainWindow", u"\u0422\u0440\u0435\u043a\u041d\u043e\u043c\u0435\u0440", None))
+        self.label_44.setText(QCoreApplication.translate("MainWindow", u"\u0414\u0430\u0442\u0430", None))
+        self.label_45.setText(QCoreApplication.translate("MainWindow", u"\u041a\u043b\u0438\u0435\u043d\u0442", None))
+        self.label_46.setText(QCoreApplication.translate("MainWindow", u"\u0422\u0440\u0430\u043d\u0441\u043f\u043e\u0440\u0442\u043d\u0430\u044f\n"
+"\u041a\u043e\u043c\u043f\u0430\u043d\u0438\u044f", None))
+        self.label_57.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0438\u0441\u043a \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438 \u043f\u043e \u0442\u0440\u0430\u043d\u0441\u043f\u043e\u0440\u0442\u043d\u044b\u043c \u043d\u0430\u043a\u043b\u0430\u0434\u043d\u044b\u043c", None))
+        self.label_59.setText(QCoreApplication.translate("MainWindow", u"\u0422\u0440\u0430\u043d\u0441\u043f\u043e\u0440\u0442\u043d\u0430\u044f\n"
+"\u041a\u043e\u043c\u043f\u0430\u043d\u0438\u044f", None))
+        self.label_60.setText(QCoreApplication.translate("MainWindow", u"\u041a\u043b\u0438\u0435\u043d\u0442", None))
+        self.label_61.setText(QCoreApplication.translate("MainWindow", u"\u0422\u0440\u0435\u043a\u041d\u043e\u043c\u0435\u0440", None))
+        self.label_63.setText(QCoreApplication.translate("MainWindow", u"\u0421", None))
+        self.label_64.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e", None))
+        self.shdFindDate0TextEdit.setDisplayFormat(QCoreApplication.translate("MainWindow", u"yyyy-MM-dd", None))
+        self.shdFindDate1TextEdit.setDisplayFormat(QCoreApplication.translate("MainWindow", u"yyyy-MM-dd", None))
+        self.shdCreateBtn.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0437\u0434\u0430\u0442\u044c", None))
+        self.shdFindDateBtn.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0438\u0441\u043a", None))
+        self.shdCreateDateTextEdit.setDisplayFormat(QCoreApplication.translate("MainWindow", u"yyyy-MM-dd", None))
+        self.shdDateCheckBox.setText(QCoreApplication.translate("MainWindow", u"\u0414\u0430\u0442\u0430", None))
     # retranslateUi
 

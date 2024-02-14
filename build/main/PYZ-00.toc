@@ -2967,6 +2967,7 @@
   ('src.repair_process',
    'C:\\remont\\sklad\\src\\repair_process.py',
    'PYMODULE'),
+  ('src.shd_process', 'C:\\remont\\sklad\\src\\shd_process.py', 'PYMODULE'),
   ('ssl',
    'C:\\Users\\igor\\AppData\\Local\\Programs\\Python\\Python310\\lib\\ssl.py',
    'PYMODULE'),

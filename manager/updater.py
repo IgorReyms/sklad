@@ -121,6 +121,11 @@ def update_settings_page(window):
     window.ui.FontSizeNotMainTextEdit.setPlainText(str(config.config["ReportInfo"]["NotMainFontSize"]))
     window.update()
 
+def update_shd_page(window):
+    window.ui.shdCreateDateTextEdit.setDate(datetime.datetime.today())
+    window.ui.shdFindDate0TextEdit.setDate(datetime.datetime.today())
+    window.ui.shdFindDate1TextEdit.setDate(datetime.datetime.today())
+
 def create_new_repair_shipment_no(last_no) -> str:
     last_no = last_no.split("-")
     new_no = last_no[0] + '-' + str(int(last_no[1]) + 1)

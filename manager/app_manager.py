@@ -8,8 +8,9 @@ from installation.install import install_process
 from models.exceptions import CustomException
 from models.custom_widgets import ExtendedComboBox
 from src.repair_process import manage_data
-from manager.updater import update_repair_page, update_debt_page, update_settings_page
+from manager.updater import update_repair_page, update_debt_page, update_settings_page, update_shd_page
 from src.debt_process import manage_debt_data
+from src.shd_process import shd_manage_data
 class MainForm(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
@@ -18,6 +19,7 @@ class MainForm(QtWidgets.QMainWindow):
         config = ConfigParser()
         self.unblockedStyleOfRepairBtn = self.ui.repairMenuButton.styleSheet()
         self.unblockedStyleOfDebtBtn = self.ui.debtMenuButton.styleSheet()
+        self.unblockedStyleOfShdBtn = self.ui.shdMenuButton.styleSheet()
         #логика кнопок страницы Установки
         self.ui.OpenFileBrowserBtn.clicked.connect(self.installation_open_fileBrowser_by_click)
         self.ui.InstallBtn.clicked.connect(self.installation_app)
@@ -27,15 +29,18 @@ class MainForm(QtWidgets.QMainWindow):
         self.ui.repairMenuButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(2))
         self.ui.settingsMenuButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(1))
         self.ui.debtMenuButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(3))
+        self.ui.shdMenuButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(4))
 
         # логика кнопок страницы Настройки-->видимость кнопок меню
         self.ui.CheckBoxRepairBtn.setChecked(config.config["Settings"]["repairBtnVisible"])
         self.ui.CheckBoxInstallBtn.setChecked(config.config["Settings"]["installationBtnVisible"])
         self.ui.CheckBoxDebtButton.setChecked(config.config["Settings"]["debtBtnVisible"])
+        self.ui.CheckBoxShdButton.setChecked(config.config["Settings"]["shdBtnVisible"])
         self.settingsVisibility()
         self.ui.CheckBoxRepairBtn.stateChanged.connect(self.settingsVisibility)
         self.ui.CheckBoxInstallBtn.stateChanged.connect(self.settingsVisibility)
         self.ui.CheckBoxDebtButton.stateChanged.connect(self.settingsVisibility)
+        self.ui.CheckBoxShdButton.stateChanged.connect(self.settingsVisibility)
 
         #логика кнопок Настройки конфигурации
         self.ui.DeleteStringIntoStocksTable.insertRow(0)
@@ -89,10 +94,85 @@ class MainForm(QtWidgets.QMainWindow):
         self.ui.DebtOutBtn.clicked.connect(self.change_debt)
         self.ui.DebtFindBtn.clicked.connect(self.find_debt)
         self.ui.DebtReportPrint.clicked.connect(self.printing_debt_report)
+
+        #логика кнопок страницы Транспортных накладных
+        self.ui.shdCreateBtn.clicked.connect(self.shd_CreateShd)
+        self.ui.shdFindDateBtn.clicked.connect(self.shd_FindShd)
+
+
+
         if config.config["Status"] == "Installed":
             update_debt_page(self, 'debt_status_info')
             update_settings_page(self)
             update_repair_page(self, 'repair_status_info')
+            update_shd_page(self)
+
+    def shd_CreateShd(self):
+        if self.ui.shdCreateDateTextEdit.date().day() < 10:
+            day = f'0{str(self.ui.shdCreateDateTextEdit.date().day() )}'
+        else:
+            day = str(self.ui.shdCreateDateTextEdit.date().day() )
+        if self.ui.shdCreateDateTextEdit.date().month() < 10:
+            month = f'0{str(self.ui.shdCreateDateTextEdit.date().month() )}'
+        else:
+            month = str(self.ui.shdCreateDateTextEdit.date().month())
+
+        year = str(self.ui.shdCreateDateTextEdit.date().year() )
+
+
+        shd_data = {
+            "ТранспортнаяКомпания": [self.ui.shdCreateShipmentCompanyTextEdit.toPlainText()],
+            "Клиент": [self.ui.shdCreateClientTextEdit.toPlainText()],
+            "ТрекНомер": [self.ui.shdCreateTrekNoTextEdit.toPlainText()],
+            "Дата": [year + '-' + month + '-' +day ]
+        }
+
+        try:
+            shd_manage_data(shd_data,1)
+            QtWidgets.QMessageBox.information(self, 'Информация',
+                                              f"Строка по транспортной накладной создана")
+            self.ui.shdCreateShipmentCompanyTextEdit.clear()
+            self.ui.shdCreateClientTextEdit.clear()
+            self.ui.shdCreateTrekNoTextEdit.clear()
+        except Exception as e:
+            QtWidgets.QMessageBox.critical(self, "Ошибка!",f'Не удалось создать строку по накладной. Причина: {e.__str__()}')
+    def shd_FindShd(self):
+        if self.ui.shdFindDate1TextEdit.date() < self.ui.shdFindDate0TextEdit.date():
+            QtWidgets.QMessageBox.critical(self, "Ошибка!",
+                                           f'Поле "ДатаПо" не может быть меньше поля "ДатаС"')
+            return None
+
+        if self.ui.shdFindDate0TextEdit.date().day() < 10:
+            day_from = f'0{str(self.ui.shdFindDate0TextEdit.date().day())}'
+        else:
+            day_from = str(self.ui.shdFindDate0TextEdit.date().day())
+        if self.ui.shdFindDate0TextEdit.date().month() < 10:
+            month_from = f'0{str(self.ui.shdFindDate0TextEdit.date().month())}'
+        else:
+            month_from = str(self.ui.shdFindDate0TextEdit.date().month())
+        if self.ui.shdFindDate1TextEdit.date().day() < 10:
+            day_to = f'0{str(self.ui.shdFindDate1TextEdit.date().day())}'
+        else:
+            day_to = str(self.ui.shdFindDate1TextEdit.date().day())
+        if self.ui.shdFindDate1TextEdit.date().month() < 10:
+            month_to = f'0{str(self.ui.shdFindDate1TextEdit.date().month())}'
+        else:
+            month_to = str(self.ui.shdFindDate1TextEdit.date().month())
+        year_from = str(self.ui.shdFindDate0TextEdit.date().year())
+        year_to = str(self.ui.shdFindDate1TextEdit.date().year())
+        shd_data = {
+            "ТранспортнаяКомпания": self.ui.shdFindShipmentCompanyTextEdit.toPlainText(),
+            "Клиент": self.ui.shdFindClientTextEdit.toPlainText(),
+            "ТрекНомер": self.ui.shdFindTrekNoTextEdit.toPlainText(),
+            "ДатаC": year_from + '-' + month_from + '-' + day_from,
+            "ДатаПо": year_to + '-' + month_to + '-' + day_to,
+            "DateFilterFlag": True if self.ui.shdDateCheckBox.checkState().value == 2 else False
+        }
+        try:
+            shd_manage_data(shd_data, 2, self)
+
+        except Exception as e:
+            QtWidgets.QMessageBox.critical(self, "Ошибка!",f'Не удалось совершить поиск накладных. Причина: {e.__str__()}')
     def settings_CreateItemStocks(self):
         self.temp = ExtendedComboBox(self)
         try:
@@ -226,8 +306,11 @@ class MainForm(QtWidgets.QMainWindow):
                     QtWidgets.QMessageBox.information(self, 'Информация', 'Установка прошла успешно!')
                     self.ui.debtMenuButton.setEnabled(True)
                     self.ui.repairMenuButton.setEnabled(True)
+                    self.ui.shdMenuButton.setEnabled(True)
+                    self.ui.settingsMenuButton.setEnabled(True)
                     self.ui.repairMenuButton.setStyleSheet(self.unblockedStyleOfRepairBtn)
                     self.ui.debtMenuButton.setStyleSheet(self.unblockedStyleOfDebtBtn)
+                    self.ui.shdMenuButton.setStyleSheet(self.unblockedStyleOfShdBtn)
                     self.ui.stackedWidget.setCurrentIndex(2)
                     update_repair_page(self, 'repair_status_info')
                     update_debt_page(self, 'debt_status_info')
@@ -252,6 +335,11 @@ class MainForm(QtWidgets.QMainWindow):
             self.ui.installationMenuButton.hide()
         elif self.ui.CheckBoxInstallBtn.checkState().value == 2:
             self.ui.installationMenuButton.setVisible(True)
+
+        if self.ui.CheckBoxShdButton.checkState().value == 0:
+            self.ui.shdMenuButton.hide()
+        elif self.ui.CheckBoxShdButton.checkState().value == 2:
+            self.ui.shdMenuButton.setVisible(True)
     def settingsSave(self) -> None:
         config = ConfigParser()
 
@@ -267,6 +355,10 @@ class MainForm(QtWidgets.QMainWindow):
                 config.config["Settings"]["installationBtnVisible"] = False
         elif self.ui.CheckBoxInstallBtn.checkState().value == 2:
                 config.config["Settings"]["installationBtnVisible"] = True
+        if self.ui.CheckBoxShdButton.checkState().value == 0:
+                config.config["Settings"]["shdBtnVisible"] = False
+        elif self.ui.CheckBoxShdButton.checkState().value == 2:
+                config.config["Settings"]["shdBtnVisible"] = True
 
 
         userResponse = QtWidgets.QMessageBox.question(self, 'Предупреждение', 'Вы уверены, что хотите изменить структуру номера документов?')
@@ -482,6 +574,8 @@ def check_first_start(ui) -> bool:
     if checker.config["Status"] == "NotInstalled":
         ui.debtMenuButton.setEnabled(False)
         ui.repairMenuButton.setEnabled(False)
+        ui.shdMenuButton.setEnabled(False)
+        ui.settingsMenuButton.setEnabled(False)
         ui.repairMenuButton.setStyleSheet(
             u"background-color: rgb(90, 90, 90);\n"
             "color: rgb(135, 135, 135);\n"
@@ -490,7 +584,14 @@ def check_first_start(ui) -> bool:
             u"background-color: rgb(90, 90, 90);\n"
             "color: rgb(135, 135, 135);\n"
         )
-
+        ui.shdMenuButton.setStyleSheet(
+            u"background-color: rgb(90, 90, 90);\n"
+            "color: rgb(135, 135, 135);\n"
+        )
+        ui.settingsMenuButton.setStyleSheet(
+            u"background-color: rgb(90, 90, 90);\n"
+            "color: rgb(135, 135, 135);\n"
+        )
         return True
     else:
         return False
@@ -505,9 +606,11 @@ def check_integrity(window) -> bool:
         QtWidgets.QMessageBox.critical(window, 'Ошибка', f'При проверке целостности данных не был найдена папка АрхивЗадолженностей')
         return False
     for name in excel_files:
-        if not os.path.exists(config.config["ExcelPath"] +"/" + name + '.xlsx'):
+        if not os.path.exists(config.config["ExcelPath"] + "/" + name + '.xlsx'):
+
             QtWidgets.QMessageBox.critical(window, 'Ошибка', f'При проверке целостности данных не был найден файл {name}.xlsx')
-            return False
+
+
     return True
 
 def start_project() -> None:
